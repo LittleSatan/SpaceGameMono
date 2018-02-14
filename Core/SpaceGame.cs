@@ -57,7 +57,8 @@ namespace SpaceGameMono
             // TODO: Add your initialization logic here
             Window.AllowUserResizing = true;
             Window.ClientSizeChanged += ClientSizeChanged;
-                        
+            Mouse.WindowHandle = Window.Handle;
+
             base.Initialize();
         }
         
