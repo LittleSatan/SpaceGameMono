@@ -12,7 +12,6 @@ namespace SpaceGameMono
         private Texture2D _title;
         private Texture2D _planet;
         private Texture2D _background1;
-        private Texture2D _background2;
         private Texture2D interfacePicture;
 
         private Song music;
@@ -33,7 +32,6 @@ namespace SpaceGameMono
         {
             _planet = content.Load<Texture2D>("Title/planet");
             _background1 = content.Load<Texture2D>("Title/background");
-            _background2 = content.Load<Texture2D>("Title/background");
             music = content.Load<Song>("Title/TitleMusic");
 
             MediaPlayer.Play(music);
@@ -61,7 +59,7 @@ namespace SpaceGameMono
             spriteBatch.Begin();
 
             spriteBatch.Draw(_background1, new Vector2((float) xPositionBackground, 0), Color.White);
-            spriteBatch.Draw(_background2, new Vector2((float) xPositionBackground + 1920, 0), Color.White);
+            spriteBatch.Draw(_background1, new Vector2((float) xPositionBackground + 1920, 0), Color.White);
 
             spriteBatch.End();
         }
