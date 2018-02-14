@@ -1,0 +1,101 @@
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/MonoGame.Framework.dll.config
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/Content/Title/TitleMusic.ogg
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/Content/Title/TitleMusic.xnb
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/Content/Title/background.xnb
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/Content/Title/planet.xnb
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/Content/cursor.xnb
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/Content/cursorAct.xnb
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/Content/interface.xnb
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/x86/SDL2.dll
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/x64/SDL2.dll
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/x86/soft_oal.dll
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/x64/soft_oal.dll
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/x86/libSDL2-2.0.so.0
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/x64/libSDL2-2.0.so.0
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/x86/libopenal.so.1
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/x64/libopenal.so.1
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/libSDL2-2.0.0.dylib
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/libopenal.1.dylib
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/SpaceGameMono.exe
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/SpaceGameMono.pdb
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/MonoGame.Framework.dll
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/bin/DesktopGL/AnyCPU/Debug/MonoGame.Framework.xml
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/obj/Debug/SpaceGameMono.csprojResolveAssemblyReference.cache
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/obj/Debug/SpaceGameMono.csproj.CoreCompileInputs.cache
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/obj/Debug/SpaceGameMono.exe
+/run/media/littles/Data/Projects/monogame/SpaceGameMono/SpaceGameMono/obj/Debug/SpaceGameMono.pdb
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x86\SDL2.dll
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x64\SDL2.dll
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x86\soft_oal.dll
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x64\soft_oal.dll
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x86\libSDL2-2.0.so.0
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x64\libSDL2-2.0.so.0
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x86\libopenal.so.1
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x64\libopenal.so.1
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\libSDL2-2.0.0.dylib
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\libopenal.1.dylib
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll.config
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\Title\background.xnb
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\Title\planet.xnb
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\Title\TitleMusic.ogg
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\Title\TitleMusic.xnb
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\cursor.xnb
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\cursorAct.xnb
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\interface.xnb
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\SpaceGameMono.exe
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\SpaceGameMono.pdb
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\obj\Debug\SpaceGameMono.csprojResolveAssemblyReference.cache
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\obj\Debug\SpaceGameMono.csproj.CoreCompileInputs.cache
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\obj\Debug\SpaceGameMono.exe
+D:\Projects\monogame\SpaceGameMono\SpaceGameMono\obj\Debug\SpaceGameMono.pdb
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x86\SDL2.dll
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x64\SDL2.dll
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x86\soft_oal.dll
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x64\soft_oal.dll
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x86\libSDL2-2.0.so.0
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x64\libSDL2-2.0.so.0
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x86\libopenal.so.1
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x64\libopenal.so.1
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\libSDL2-2.0.0.dylib
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\libopenal.1.dylib
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll.config
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\Title\background.xnb
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\Title\planet.xnb
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\Title\TitleMusic.ogg
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\Title\TitleMusic.xnb
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\cursor.xnb
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\cursorAct.xnb
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\interface.xnb
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\SpaceGameMono.exe
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\SpaceGameMono.pdb
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\obj\Debug\SpaceGameMono.csprojResolveAssemblyReference.cache
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\obj\Debug\SpaceGameMono.csproj.CoreCompileInputs.cache
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\obj\Debug\SpaceGameMono.exe
+D:\Projects\monogame\SpaceGameMono - Copy\SpaceGameMono\obj\Debug\SpaceGameMono.pdb
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x86\SDL2.dll
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x64\SDL2.dll
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x86\soft_oal.dll
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x64\soft_oal.dll
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x86\libSDL2-2.0.so.0
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x64\libSDL2-2.0.so.0
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x86\libopenal.so.1
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\x64\libopenal.so.1
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\libSDL2-2.0.0.dylib
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\libopenal.1.dylib
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll.config
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\Title\background.xnb
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\Title\planet.xnb
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\Title\TitleMusic.ogg
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\Title\TitleMusic.xnb
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\cursor.xnb
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\cursorAct.xnb
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\Content\interface.xnb
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\SpaceGameMono.exe
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\SpaceGameMono.pdb
+D:\Projects\monogame\SpaceGameMono\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll
+D:\Projects\monogame\SpaceGameMono\obj\Debug\SpaceGameMono.csprojResolveAssemblyReference.cache
+D:\Projects\monogame\SpaceGameMono\obj\Debug\SpaceGameMono.csproj.CoreCompileInputs.cache
+D:\Projects\monogame\SpaceGameMono\obj\Debug\SpaceGameMono.exe
+D:\Projects\monogame\SpaceGameMono\obj\Debug\SpaceGameMono.pdb
