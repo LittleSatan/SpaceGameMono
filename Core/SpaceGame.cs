@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,16 +11,18 @@ namespace SpaceGameMono
     /// </summary>
     public class SpaceGame : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        public static GameState gameState;
+        private const int MIN_WINDOW_WIDTH = 800;
+        private const int MIN_WINDOW_HEIGHT = 600;
 
-        private bool resizeWindowRequested;
+        private readonly GraphicsDeviceManager _graphics;
+        private SpriteBatch _spriteBatch;
+
+        private bool _resizeWindowRequested;
 
         public SpaceGame()
         {
             // making
-            graphics = new GraphicsDeviceManager(this);
+            _graphics = new GraphicsDeviceManager(this);
             
             Config.CheckAndCreateFolder();
             if (Config.CheckForConfig())
@@ -33,16 +34,16 @@ namespace SpaceGameMono
                 Config.SaveConfig();                
             }
 
-            graphics.PreferredBackBufferWidth = Config.Width;
-            graphics.PreferredBackBufferHeight = Config.Height;
-            graphics.IsFullScreen = Config.Fullscreen;
+            _graphics.PreferredBackBufferWidth = Config.Width;
+            _graphics.PreferredBackBufferHeight = Config.Height;
+            _graphics.IsFullScreen = Config.Fullscreen;
             
             // Center Window            
             Window.Position = new Point(
-                (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 2) - (graphics.PreferredBackBufferWidth / 2), 
-                (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 2) - (graphics.PreferredBackBufferHeight / 2));
+                (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 2) - (_graphics.PreferredBackBufferWidth / 2), 
+                (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 2) - (_graphics.PreferredBackBufferHeight / 2));
             
-            graphics.ApplyChanges();
+            _graphics.ApplyChanges();
             
             Content.RootDirectory = "Content";
         }
@@ -64,7 +65,7 @@ namespace SpaceGameMono
         }
         
         private void ClientSizeChanged(object sender, EventArgs e) {
-            resizeWindowRequested = true;
+            _resizeWindowRequested = true;
         } 
 
 
@@ -75,7 +76,7 @@ namespace SpaceGameMono
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
             GameStateManager.Instance.SetContent(Content); 
             GameStateManager.Instance.AddScreen(new Title(GraphicsDevice));
         }
@@ -109,17 +110,20 @@ namespace SpaceGameMono
         {
 
             // apply new window size
-            if (resizeWindowRequested)
+            if (_resizeWindowRequested)
             {
                 Config.Width = Window.ClientBounds.Width;
                 Config.Height = Window.ClientBounds.Height;
-                graphics.PreferredBackBufferWidth = Config.Width;
-                graphics.PreferredBackBufferHeight = Config.Height;
-
-                graphics.ApplyChanges();
+                if (Config.Width < MIN_WINDOW_WIDTH)
+                    Config.Width = MIN_WINDOW_WIDTH;
+                if (Config.Height < MIN_WINDOW_HEIGHT)
+                    Config.Height = MIN_WINDOW_HEIGHT;
+                _graphics.PreferredBackBufferWidth = Config.Width;
+                _graphics.PreferredBackBufferHeight = Config.Height;
+                _graphics.ApplyChanges();
             }
 
-            GameStateManager.Instance.Draw(spriteBatch);
+            GameStateManager.Instance.Draw(_spriteBatch);
             base.Draw(gameTime);
         }
 
