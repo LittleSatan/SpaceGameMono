@@ -4,9 +4,8 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using OpenGL;
 
-namespace SpaceGameMono
+namespace SpaceGameMono.Core.Scenes
 {
     public class Title : GameState
     {
@@ -22,6 +21,9 @@ namespace SpaceGameMono
         private float _xPositionBackground;
         private float _planetRotation;
 
+        private int[] _menuTransparency;
+        private int _menuScale;
+
         public Title(GraphicsDevice graphicsDevice)
             : base(graphicsDevice)
         {
@@ -29,17 +31,23 @@ namespace SpaceGameMono
 
         public override void Initialize()
         {
+            _menuTransparency = new int[5];
         }
 
         public override void LoadContent(ContentManager content)
         {
             _planet = content.Load<Texture2D>("Title/planet");
             _background = content.Load<Texture2D>("Title/background");
-            _music = content.Load<Song>("Title/TitleMusic");
+            
+            _interfacePicture = content.Load<Texture2D>("interface");
 
             _cursorNormal = content.Load<Texture2D>("cursor");
             _cursorClicked = content.Load<Texture2D>("cursorAct");
-            
+
+            _music = content.Load<Song>("Title/TitleMusic");
+
+            MediaPlayer.Volume = (float) (Config.BGM * 0.1);
+            MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(_music);
         }
 
@@ -53,8 +61,10 @@ namespace SpaceGameMono
             _xPositionBackground -= (float) (gameTime.ElapsedGameTime.Milliseconds * 0.04);
             _xPositionBackground %= _background.Width;
 
-            _planetRotation += (float) 0.001;
+            _planetRotation += (float) 0.0005;
             _planetRotation %= (float) Math.PI * 2;
+
+            _menuScale = 600 / Config.Height;
 
         }
 
@@ -68,33 +78,42 @@ namespace SpaceGameMono
             {
                 for (var j = 0; j < Config.Height; j += _background.Height)
                 {
-                    spriteBatch.Draw(_background, new Vector2((float) i, j), Color.White);
+                    spriteBatch.Draw(_background, new Vector2( i, j), Color.White);
                 }
             }
 
             // draw planet
-            Vector2 location = new Vector2((float) (Config.Width * 0.5), (float) (Config.Height + _planet.Height * 0.4));
-            Rectangle sourceRectangle = new Rectangle(0, 0, _planet.Width, _planet.Height);
-            Vector2 origin = new Vector2((float) (_planet.Width * 0.5), (float) (_planet.Height * 0.5));
-
             spriteBatch.Draw(
                 _planet, // Texture2D texture,
-                location, // Vector2 position,
-                sourceRectangle, //Nullable<Rectangle> sourceRectangle,
+                new Vector2((float) (Config.Width * 0.5), (float) (Config.Height + _planet.Height * 0.4)), // Vector2 position,
+                new Rectangle(0, 0, _planet.Width, _planet.Height), //Nullable<Rectangle> sourceRectangle,
                 Color.White, //Color color,
                 _planetRotation, //float rotation,
-                origin, //Vector2 origin,
+                new Vector2((float) (_planet.Width * 0.5), (float) (_planet.Height * 0.5)), //Vector2 origin,
                 1.0f, //float scale,
                 SpriteEffects.None, //SpriteEffects effects,
                 0f //float layerDepth
             );
                
+            // draw menu
+            Rectangle menuInterface = new Rectangle(108, 36, 316, 66);
+            for (int i = 0; i < _menuTransparency.Length; i++)
+            {
+                spriteBatch.Draw(_interfacePicture, 
+                    new Rectangle( 
+                        (int) (Config.Width * 0.5 - menuInterface.Width * 0.5 * _menuScale), 
+                        i * (menuInterface.Height + 22) * _menuScale, 
+                        menuInterface.Width * _menuScale, 
+                        menuInterface.Height * _menuScale),
+                    menuInterface, 
+                    new Color(Color.White, 0.5f + _menuTransparency[i] * 5 / 15));
+            }
+            
             // draw mouse
             spriteBatch.Draw(Mouse.GetState().LeftButton == ButtonState.Pressed ? _cursorClicked : _cursorNormal,
                 new Vector2(
                     Mouse.GetState().X,
                     Mouse.GetState().Y), Color.White);
-
 
             spriteBatch.End();
         }
