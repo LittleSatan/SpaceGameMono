@@ -3,7 +3,7 @@ using System.IO;
 
 // ReSharper disable All
 
-namespace SpaceGameMono
+namespace SpaceGameMono.Core
 {
     public static class Config
     {

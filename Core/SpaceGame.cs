@@ -2,9 +2,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SpaceGameMono.Core.GameStates;
 using SpaceGameMono.Core.Scenes;
 
-namespace SpaceGameMono
+namespace SpaceGameMono.Core
 {
     /// <summary>
     /// This is the main type for your game.

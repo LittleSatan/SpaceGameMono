@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SpaceGameMono
+namespace SpaceGameMono.Core.GameStates
 {
     public abstract class GameState : IGameState
     {

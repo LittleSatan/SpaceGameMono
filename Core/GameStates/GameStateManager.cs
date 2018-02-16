@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SpaceGameMono
+namespace SpaceGameMono.Core.GameStates
 {
     public class GameStateManager
     {
