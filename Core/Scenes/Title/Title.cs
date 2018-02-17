@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SpaceGameMono.Core.GameStates;
 
-namespace SpaceGameMono.Core.Scenes
+namespace SpaceGameMono.Core.Scenes.Title
 {
     public class Title : GameState
     {
@@ -16,14 +16,12 @@ namespace SpaceGameMono.Core.Scenes
         private Texture2D _interfacePicture;
         private Texture2D _cursorNormal;
         private Texture2D _cursorClicked;
-
+        private TitleButton[] _titleButtons;
+        
         private Song _music;
 
         private float _xPositionBackground;
         private float _planetRotation;
-
-        private int[] _menuTransparency;
-        private int _menuScale;
 
         public Title(GraphicsDevice graphicsDevice)
             : base(graphicsDevice)
@@ -32,7 +30,11 @@ namespace SpaceGameMono.Core.Scenes
 
         public override void Initialize()
         {
-            _menuTransparency = new int[5];
+            _titleButtons = new TitleButton[5];
+            for (int i = 0; i < _titleButtons.Length; i++)
+            {
+                _titleButtons[i] = new TitleButton( "test", (int) (Config.Width * 0.5) - 180, i * 120 + 100, 360, 100);
+            }
         }
 
         public override void LoadContent(ContentManager content)
@@ -65,14 +67,22 @@ namespace SpaceGameMono.Core.Scenes
             _planetRotation += (float) 0.0005;
             _planetRotation %= (float) Math.PI * 2;
 
-            _menuScale = 600 / Config.Height;
-
+            foreach (var button in _titleButtons)
+            {
+                button.Destination = new Rectangle(
+                    (int) (Config.Width * 0.5) - (int) (button.Destination.Width * 0.5),
+                    button.Destination.Top,
+                    button.Destination.Width,
+                    button.Destination.Height);
+                button.update(gameTime);
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
 
             spriteBatch.Begin();
+
 
             // draw background
             for (var i = _xPositionBackground; i < Config.Width; i += _background.Width)
@@ -97,17 +107,9 @@ namespace SpaceGameMono.Core.Scenes
             );
                
             // draw menu
-            Rectangle menuInterface = new Rectangle(108, 36, 316, 66);
-            for (int i = 0; i < _menuTransparency.Length; i++)
+            foreach (var button in _titleButtons)
             {
-                spriteBatch.Draw(_interfacePicture, 
-                    new Rectangle( 
-                        (int) (Config.Width * 0.5 - menuInterface.Width * 0.5 * _menuScale), 
-                        i * (menuInterface.Height + 22) * _menuScale, 
-                        menuInterface.Width * _menuScale, 
-                        menuInterface.Height * _menuScale),
-                    menuInterface, 
-                    new Color(Color.White, 0.5f + _menuTransparency[i] * 5 / 15));
+                button.draw(spriteBatch, _interfacePicture);
             }
             
             // draw mouse

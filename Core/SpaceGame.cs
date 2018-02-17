@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SpaceGameMono.Core.GameStates;
 using SpaceGameMono.Core.Scenes;
+using SpaceGameMono.Core.Scenes.Title;
 
 namespace SpaceGameMono.Core
 {

@@ -47,7 +47,8 @@
     <Compile Include="Core\GameStates\GameStateManager.cs" />
     <Compile Include="Core\GameStates\IGameState.cs" />
     <Compile Include="Core\Scenes\GameScene.cs" />
-    <Compile Include="Core\Scenes\Title.cs" />
+    <Compile Include="Core\Scenes\Title\Title.cs" />
+    <Compile Include="Core\Scenes\Title\TitleButton.cs" />
     <Compile Include="Core\SpaceGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
