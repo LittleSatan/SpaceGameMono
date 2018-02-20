@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -25,7 +26,6 @@ namespace SpaceGameMono.Core
         {
             // making
             _graphics = new GraphicsDeviceManager(this);
-            
             Config.CheckAndCreateFolder();
             if (Config.CheckForConfig())
             {
@@ -80,7 +80,7 @@ namespace SpaceGameMono.Core
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             GameStateManager.Instance.SetContent(Content); 
-            GameStateManager.Instance.AddScreen(new Title(GraphicsDevice));
+            GameStateManager.Instance.AddScreen(new Title(this, GraphicsDevice));
         }
 
         /// <summary>
@@ -127,6 +127,11 @@ namespace SpaceGameMono.Core
 
             GameStateManager.Instance.Draw(_spriteBatch);
             base.Draw(gameTime);
+        }
+
+        public void exit()
+        {
+            this.Exit();
         }
 
     }

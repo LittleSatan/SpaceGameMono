@@ -7,9 +7,11 @@ namespace SpaceGameMono.Core.GameStates
     public abstract class GameState : IGameState
     {
         protected ContentManager _content;
+        protected SpaceGame _game;
         protected GraphicsDevice _graphicsDevice;
-        public GameState(GraphicsDevice graphicsDevice)
+        public GameState(SpaceGame game, GraphicsDevice graphicsDevice)
         {
+            _game = game;
             _graphicsDevice = graphicsDevice;
         }
         public abstract void Initialize();

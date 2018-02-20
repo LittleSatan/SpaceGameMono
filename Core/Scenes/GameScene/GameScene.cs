@@ -13,8 +13,8 @@ namespace SpaceGameMono.Core.Scenes.GameScene
         private Song music;
 
         
-        public GameScene(GraphicsDevice graphicsDevice)
-            :base(graphicsDevice)
+        public GameScene(SpaceGame game, GraphicsDevice graphicsDevice)
+            :base(game, graphicsDevice)
         {
             
         }

@@ -44,15 +44,18 @@ namespace SpaceGameMono.Core.Scenes.Title
             if (_transparency > 0.4f) _transparency = 0.4f;
         }
 
-        public void Draw(SpriteBatch spriteBatch, Texture2D source)
+        public void Draw(SpriteFont font, SpriteBatch spriteBatch, Texture2D source)
         {
-                        
-//            Console.WriteLine($"{Destination.Left}, {Destination.Top}, {Destination.Width}, {Destination.Height}");
-
             spriteBatch.Draw(source, 
                 Destination,
                 _menuInterface , 
                 new Color(0.4f + _transparency, 0.4f + _transparency, 0.4f + _transparency, 0.4f + _transparency));
+
+            var textPos = font.MeasureString(Text);
+            textPos.X = (int) ((Destination.Width - textPos.X) * 0.5) + Destination.Left;
+            textPos.Y = (int) ((Destination.Height - textPos.Y) * 0.5) + Destination.Top;
+            spriteBatch.DrawString(font, Text, textPos, Color.Black);
+
         }
     }
 }
