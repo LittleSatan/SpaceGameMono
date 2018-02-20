@@ -5,7 +5,7 @@ namespace SpaceGameMono.Core
 {
     public static class Config
     {
-        private static int _width = 800;
+        private static int _width = 1280;
 
         public static int Width
         {
@@ -18,7 +18,7 @@ namespace SpaceGameMono.Core
             }
         }
 
-        private static int _height = 600;
+        private static int _height = 720;
 
         public static int Height
         {
@@ -33,16 +33,16 @@ namespace SpaceGameMono.Core
 
         public static bool Fullscreen { get; set; } = false;
 
-        private static float _scale = 1;
+        private static float _menuScale;
 
-        public static float Scale
+        public static float MenuScale
         {
-            get => _scale;
+            get => _menuScale;
             set
             {
-                _scale = value;
-                if (_scale < 0)
-                    _scale = 0;
+                _menuScale = value;
+                if (_menuScale < 0)
+                    _menuScale = 0;
             }
         }
 

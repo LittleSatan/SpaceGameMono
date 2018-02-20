@@ -11,55 +11,47 @@ namespace SpaceGameMono.Core.Scenes.Title
     public class TitleButton
     {
         private float _transparency = 0;
-        private String text;
 
-        public float Transparency
-        {
-            get => _transparency;
-            set
-            {
-                _transparency = value;
-                if (_transparency < 0)
-                    _transparency = 0;
-                if (_transparency > 0.5f)
-                    _transparency = 0.5f;
-            }
-        }
+        public string Text { get; set; }
+
+        private static readonly Rectangle _menuInterface = new Rectangle(108, 36, 316, 66);
 
         public Rectangle Destination { get; set; }
 
-        public TitleButton(String text, int x, int y, int length, int height)
+        public TitleButton(int x, int y, int length, int height)
         {
             Destination = new Rectangle(x, y, length, height);
-            text = text;
         }
 
-        public bool pointInRect(int x, int y)
+        public bool PointInRect(int x, int y)
         {
             return (x > Destination.Left && x < Destination.Right
                                          && y > Destination.Top && y < Destination.Bottom);
         }
         
-        public void update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
-            if (pointInRect(Mouse.GetState().X, Mouse.GetState().Y))
+            if (PointInRect(Mouse.GetState().X, Mouse.GetState().Y))
             {
-                Transparency += gameTime.ElapsedGameTime.Milliseconds * 0.002f;
+                _transparency += gameTime.ElapsedGameTime.Milliseconds * 0.002f;
             }
             else
             {
-                Transparency -= gameTime.ElapsedGameTime.Milliseconds * 0.002f;
+                _transparency -= gameTime.ElapsedGameTime.Milliseconds * 0.002f;
             }
+
+            if (_transparency < 0f) _transparency = 0f;
+            if (_transparency > 0.4f) _transparency = 0.4f;
         }
 
-        public void draw(SpriteBatch spriteBatch, Texture2D source)
+        public void Draw(SpriteBatch spriteBatch, Texture2D source)
         {
-            
-            Rectangle menuInterface = new Rectangle(108, 36, 316, 66);
+                        
+//            Console.WriteLine($"{Destination.Left}, {Destination.Top}, {Destination.Width}, {Destination.Height}");
 
             spriteBatch.Draw(source, 
                 Destination,
-                menuInterface, 
+                _menuInterface , 
                 new Color(0.4f + _transparency, 0.4f + _transparency, 0.4f + _transparency, 0.4f + _transparency));
         }
     }

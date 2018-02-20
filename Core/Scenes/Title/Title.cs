@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,8 +21,12 @@ namespace SpaceGameMono.Core.Scenes.Title
         
         private Song _music;
 
+        private MouseState _oldMouseState;
+        
         private float _xPositionBackground;
         private float _planetRotation;
+
+        private const int _distanceButtons = 20;
 
         public Title(GraphicsDevice graphicsDevice)
             : base(graphicsDevice)
@@ -30,11 +35,17 @@ namespace SpaceGameMono.Core.Scenes.Title
 
         public override void Initialize()
         {
-            _titleButtons = new TitleButton[5];
+            _oldMouseState = Mouse.GetState();
+            _titleButtons = new TitleButton[4];
             for (int i = 0; i < _titleButtons.Length; i++)
             {
-                _titleButtons[i] = new TitleButton( "test", (int) (Config.Width * 0.5) - 180, i * 120 + 100, 360, 100);
+                _titleButtons[i] = new TitleButton(0, 0, 360, 100);
             }
+            _titleButtons[0].Text = "New Game";
+            _titleButtons[0].Text = "Load Game";
+            _titleButtons[0].Text = "Settings";
+            _titleButtons[0].Text = "Exit";
+            UpdateButtonPos();
         }
 
         public override void LoadContent(ContentManager content)
@@ -63,28 +74,64 @@ namespace SpaceGameMono.Core.Scenes.Title
             _content.Unload();
         }
 
+        private void UpdateButtonPos()
+        {
+            for (int i = 0; i < _titleButtons.Length; i++)
+            {
+                int midX = (int) (Config.Width * 0.5);
+                int midY = (int) (Config.Height * 0.5);
+                _titleButtons[i].Destination = new Rectangle(
+                    i == 0 || i == 2 ? midX - _distanceButtons - _titleButtons[i].Destination.Width : midX + _distanceButtons,
+                    i == 0 || i == 1 ? midY - _distanceButtons - _titleButtons[i].Destination.Height : midY + _distanceButtons,
+                    _titleButtons[i].Destination.Width,
+                    _titleButtons[i].Destination.Height
+                    );
+            }
+        }
+        
         public override void Update(GameTime gameTime)
         {
+
+            UpdateButtonPos();
+            
             _xPositionBackground -= (float) (gameTime.ElapsedGameTime.Milliseconds * 0.04);
             _xPositionBackground %= _background.Width;
 
             _planetRotation += (float) 0.0005;
             _planetRotation %= (float) Math.PI * 2;
 
+            // draw menu
             foreach (var button in _titleButtons)
             {
-                button.Destination = new Rectangle(
-                    (int) (Config.Width * 0.5) - (int) (button.Destination.Width * 0.5),
-                    button.Destination.Top,
-                    button.Destination.Width,
-                    button.Destination.Height);
-                button.update(gameTime);
+                button.Update(gameTime);
             }
 
-            if (Mouse.GetState().LeftButton == ButtonState.Pressed && _titleButtons[0].pointInRect(Mouse.GetState().X, Mouse.GetState().Y))
+            // if mouse just got pressed
+            if (_oldMouseState.LeftButton == ButtonState.Released &&
+                Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
-                GameStateManager.Instance.ChangeScreen(new GameScene.GameScene(_graphicsDevice));   
+                for (int i = 0; i < _titleButtons.Length; i++)
+                {
+                    _titleButtons[i].Update(gameTime);
+                    if (_titleButtons[i].PointInRect(Mouse.GetState().X, Mouse.GetState().Y))
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                GameStateManager.Instance.ChangeScreen(new GameScene.GameScene(_graphicsDevice));
+                                break;
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                        }
+                    }
+                }
             }
+
+            _oldMouseState = Mouse.GetState();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -118,7 +165,7 @@ namespace SpaceGameMono.Core.Scenes.Title
             // draw menu
             foreach (var button in _titleButtons)
             {
-                button.draw(spriteBatch, _interfacePicture);
+                button.Draw(spriteBatch, _interfacePicture);
             }
             
             // draw mouse
