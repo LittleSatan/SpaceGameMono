@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using SpaceGameMono.Core.GameStates;
 
-namespace SpaceGameMono.Core.Scenes
+namespace SpaceGameMono.Core.Scenes.GameScene
 {
     public class GameScene : GameState
     {
@@ -26,11 +26,12 @@ namespace SpaceGameMono.Core.Scenes
         public override void LoadContent(ContentManager Content)
         { 
             _planet = Content.Load<Texture2D>("Title/planet");
+            _content = Content;
         }
 
-        public override void UnloadContent(ContentManager content)
+        public override void UnloadContent()
         { 
-            content.Unload();
+            _content.Unload();
         }
 
         public override void Update(GameTime gameTime)

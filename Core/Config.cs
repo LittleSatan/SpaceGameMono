@@ -1,8 +1,6 @@
 ﻿using System;
 using System.IO;
 
-// ReSharper disable All
-
 namespace SpaceGameMono.Core
 {
     public static class Config
@@ -33,13 +31,7 @@ namespace SpaceGameMono.Core
             }
         }
 
-        private static bool _fullscreen = false;
-
-        public static bool Fullscreen
-        {
-            get => _fullscreen;
-            set => _fullscreen = value;
-        }
+        public static bool Fullscreen { get; set; } = false;
 
         private static float _scale = 1;
 
@@ -56,7 +48,7 @@ namespace SpaceGameMono.Core
 
         private static int _bgm = 1;
 
-        public static int BGM
+        public static int Bgm
         {
             get => _bgm;
             set
@@ -71,7 +63,7 @@ namespace SpaceGameMono.Core
 
         private static int _se = 1;
 
-        public static int SE
+        public static int Se
         {
             get => _se;
             set
@@ -104,7 +96,6 @@ namespace SpaceGameMono.Core
             var gameDir = Config.GetFolderPath();
             if (Directory.Exists(gameDir)) return;
             // if it doesnt exist, create the folder(s)
-            Console.WriteLine($"Folder for Gamesaves doesnt exist. It will be created at {gameDir}\n");
             Directory.CreateDirectory(gameDir);
         }
 
@@ -155,8 +146,6 @@ namespace SpaceGameMono.Core
                     }
                 }
             }
-
-            Console.WriteLine("Loaded Settings from Config File\n");
         }
 
         // saves a nice and readable version of the settings object
@@ -176,8 +165,6 @@ namespace SpaceGameMono.Core
                     sw.WriteLine(write);
                 }
             }
-
-            Console.WriteLine("Saved Settings to Config File\n");
         }
     }
 }

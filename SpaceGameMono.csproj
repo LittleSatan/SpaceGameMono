@@ -13,7 +13,8 @@
     <AssemblyName>SpaceGameMono</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -46,7 +47,7 @@
     <Compile Include="Core\GameStates\GameState.cs" />
     <Compile Include="Core\GameStates\GameStateManager.cs" />
     <Compile Include="Core\GameStates\IGameState.cs" />
-    <Compile Include="Core\Scenes\GameScene.cs" />
+    <Compile Include="Core\Scenes\GameScene\GameScene.cs" />
     <Compile Include="Core\Scenes\Title\Title.cs" />
     <Compile Include="Core\Scenes\Title\TitleButton.cs" />
     <Compile Include="Core\SpaceGame.cs" />

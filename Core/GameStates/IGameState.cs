@@ -13,7 +13,7 @@ namespace SpaceGameMono.Core.GameStates
         void LoadContent(ContentManager content);
        
         // Unload any content here
-        void UnloadContent(ContentManager content);
+        void UnloadContent();
 
         // Updates the game
         void Update(GameTime gameTime);

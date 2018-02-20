@@ -34,7 +34,7 @@ namespace SpaceGameMono.Core.Scenes.Title
             text = text;
         }
 
-        private bool pointInRect(int x, int y)
+        public bool pointInRect(int x, int y)
         {
             return (x > Destination.Left && x < Destination.Right
                                          && y > Destination.Top && y < Destination.Bottom);

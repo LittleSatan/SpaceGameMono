@@ -39,6 +39,7 @@ namespace SpaceGameMono.Core.Scenes.Title
 
         public override void LoadContent(ContentManager content)
         {
+
             _planet = content.Load<Texture2D>("Title/planet");
             _background = content.Load<Texture2D>("Title/background");
             
@@ -49,14 +50,17 @@ namespace SpaceGameMono.Core.Scenes.Title
 
             _music = content.Load<Song>("Title/TitleMusic");
 
-            MediaPlayer.Volume = (float) (Config.BGM * 0.1);
+            MediaPlayer.Volume = (float) (Config.Bgm * 0.1);
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(_music);
+
+            _content = content;
+
         }
 
-        public override void UnloadContent(ContentManager content)
+        public override void UnloadContent()
         {
-            content.Unload();
+            _content.Unload();
         }
 
         public override void Update(GameTime gameTime)
@@ -75,6 +79,11 @@ namespace SpaceGameMono.Core.Scenes.Title
                     button.Destination.Width,
                     button.Destination.Height);
                 button.update(gameTime);
+            }
+
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed && _titleButtons[0].pointInRect(Mouse.GetState().X, Mouse.GetState().Y))
+            {
+                GameStateManager.Instance.ChangeScreen(new GameScene.GameScene(_graphicsDevice));   
             }
         }
 

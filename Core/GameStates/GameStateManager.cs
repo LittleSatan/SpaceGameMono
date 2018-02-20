@@ -89,6 +89,10 @@ namespace SpaceGameMono.Core.GameStates
         {
             try
             {
+                foreach (var _screen in _screens)
+                {
+                    _screen.UnloadContent();
+                }
                 ClearScreens();
                 AddScreen(screen);
             }
@@ -112,7 +116,7 @@ namespace SpaceGameMono.Core.GameStates
             catch (Exception ex)
             {
                 // Log the exception
-                Console.WriteLine(ex);  
+//                Console.WriteLine(ex);  
             }
         }
 
@@ -129,7 +133,7 @@ namespace SpaceGameMono.Core.GameStates
             catch (Exception ex)
             {
                 // Log the exception
-                Console.WriteLine(ex);                
+//                Console.WriteLine(ex);                
             }
         }
         
@@ -138,7 +142,7 @@ namespace SpaceGameMono.Core.GameStates
         {
             foreach (GameState state in _screens)
             {
-                state.UnloadContent(_content);
+                state.UnloadContent();
             }
         }
         
