@@ -33,23 +33,25 @@ namespace SpaceGameMono.Core
             }
             else
             {
-                Config.SaveConfig();                
+                Config.SaveConfig();
             }
 
             _graphics.PreferredBackBufferWidth = Config.Width;
             _graphics.PreferredBackBufferHeight = Config.Height;
             _graphics.IsFullScreen = Config.Fullscreen;
-            
-            // Center Window            
+
+            // Center Window
             Window.Position = new Point(
-                (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 2) - (_graphics.PreferredBackBufferWidth / 2), 
-                (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 2) - (_graphics.PreferredBackBufferHeight / 2));
-            
+                (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 2) -
+                (_graphics.PreferredBackBufferWidth / 2),
+                (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 2) -
+                (_graphics.PreferredBackBufferHeight / 2));
+
             _graphics.ApplyChanges();
-            
+
             Content.RootDirectory = "Content";
         }
-        
+
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -65,11 +67,11 @@ namespace SpaceGameMono.Core
 
             base.Initialize();
         }
-        
-        private void ClientSizeChanged(object sender, EventArgs e) {
-            _resizeWindowRequested = true;
-        } 
 
+        private void ClientSizeChanged(object sender, EventArgs e)
+        {
+            _resizeWindowRequested = true;
+        }
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
@@ -79,8 +81,7 @@ namespace SpaceGameMono.Core
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            GameStateManager.Instance.SetContent(Content); 
-            GameStateManager.Instance.AddScreen(new Title(this, GraphicsDevice));
+            GameStateManager.SetGameState(new Title(this, GraphicsDevice), Content);
         }
 
         /// <summary>
@@ -89,10 +90,10 @@ namespace SpaceGameMono.Core
         /// </summary>
         protected override void UnloadContent()
         {
-            GameStateManager.Instance.UnloadContent();
+            GameStateManager.GetGameState().UnloadContent();
             Content.Unload();
         }
-        
+
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -100,7 +101,7 @@ namespace SpaceGameMono.Core
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            GameStateManager.Instance.Update(gameTime);
+            GameStateManager.GetGameState().Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -110,7 +111,6 @@ namespace SpaceGameMono.Core
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-
             // apply new window size
             if (_resizeWindowRequested)
             {
@@ -125,7 +125,7 @@ namespace SpaceGameMono.Core
                 _graphics.ApplyChanges();
             }
 
-            GameStateManager.Instance.Draw(_spriteBatch);
+            GameStateManager.GetGameState().Draw(_spriteBatch);
             base.Draw(gameTime);
         }
 
@@ -133,6 +133,5 @@ namespace SpaceGameMono.Core
         {
             this.Exit();
         }
-
     }
 }

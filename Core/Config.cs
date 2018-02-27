@@ -115,14 +115,13 @@ namespace SpaceGameMono.Core
 
             using (StreamReader sw = new StreamReader(configPath))
             {
-                int counter = 0;
                 while (!sw.EndOfStream)
                 {
                     var line = sw.ReadLine();
                     var prot = line.Split(':')[0];
                     var value = line.Split(' ')[1];
 
-                    Type t = typeof(Config);
+                    var t = typeof(Config);
 
                     try
                     {
@@ -130,13 +129,13 @@ namespace SpaceGameMono.Core
                         {
                             Type propertyType = t.GetProperty(prot).PropertyType;
                             if (propertyType == typeof(int))
-                                t.GetProperty(prot).SetValue(null, Int32.Parse(value));
+                                t.GetProperty(prot)?.SetValue(null, int.Parse(value));
                             if (propertyType == typeof(float))
-                                t.GetProperty(prot).SetValue(null, float.Parse(value));
+                                t.GetProperty(prot)?.SetValue(null, float.Parse(value));
                             if (propertyType == typeof(bool))
-                                t.GetProperty(prot).SetValue(null, Boolean.Parse(value));
-                            if (propertyType == typeof(String))
-                                t.GetProperty(prot).SetValue(null, value);
+                                t.GetProperty(prot)?.SetValue(null, bool.Parse(value));
+                            if (propertyType == typeof(string))
+                                t.GetProperty(prot)?.SetValue(null, value);
                         }
                     }
                     catch (Exception e)

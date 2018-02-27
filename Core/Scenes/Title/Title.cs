@@ -22,7 +22,7 @@ namespace SpaceGameMono.Core.Scenes.Title
 
         private TitleButton[] _titleButtons;
         private MouseState _oldMouseState;
-        
+
         private float _xPositionBackground;
         private float _planetRotation;
 
@@ -33,7 +33,7 @@ namespace SpaceGameMono.Core.Scenes.Title
         {
         }
 
-        public override void Initialize()
+        public override void Init()
         {
             _oldMouseState = Mouse.GetState();
             _titleButtons = new TitleButton[4];
@@ -41,6 +41,7 @@ namespace SpaceGameMono.Core.Scenes.Title
             {
                 _titleButtons[i] = new TitleButton(0, 0, 360, 100);
             }
+
             _titleButtons[0].Text = "New Game";
             _titleButtons[1].Text = "Load Game";
             _titleButtons[2].Text = "Settings";
@@ -50,11 +51,10 @@ namespace SpaceGameMono.Core.Scenes.Title
 
         public override void LoadContent(ContentManager content)
         {
-
             _planet = content.Load<Texture2D>("Title/planet");
             _background = content.Load<Texture2D>("Title/background");
             _font = content.Load<SpriteFont>("Title/TitleFont");
-            
+
             _interfacePicture = content.Load<Texture2D>("interface");
 
             _cursorNormal = content.Load<Texture2D>("cursor");
@@ -67,7 +67,6 @@ namespace SpaceGameMono.Core.Scenes.Title
             MediaPlayer.Play(_music);
 
             _content = content;
-
         }
 
         public override void UnloadContent()
@@ -82,19 +81,22 @@ namespace SpaceGameMono.Core.Scenes.Title
                 int midX = (int) (Config.Width * 0.5);
                 int midY = (int) (Config.Height * 0.5);
                 _titleButtons[i].Destination = new Rectangle(
-                    i == 0 || i == 2 ? midX - DistanceButtons - _titleButtons[i].Destination.Width : midX + DistanceButtons,
-                    i == 0 || i == 1 ? midY - DistanceButtons - _titleButtons[i].Destination.Height : midY + DistanceButtons,
+                    i == 0 || i == 2
+                        ? midX - DistanceButtons - _titleButtons[i].Destination.Width
+                        : midX + DistanceButtons,
+                    i == 0 || i == 1
+                        ? midY - DistanceButtons - _titleButtons[i].Destination.Height
+                        : midY + DistanceButtons,
                     _titleButtons[i].Destination.Width,
                     _titleButtons[i].Destination.Height
-                    );
+                );
             }
         }
-        
+
         public override void Update(GameTime gameTime)
         {
-
             UpdateButtonPos();
-            
+
             _xPositionBackground -= (float) (gameTime.ElapsedGameTime.Milliseconds * 0.04);
             _xPositionBackground %= _background.Width;
 
@@ -119,14 +121,17 @@ namespace SpaceGameMono.Core.Scenes.Title
                         switch (i)
                         {
                             case 0:
-                                GameStateManager.Instance.ChangeScreen(new GameScene.GameScene(_game, _graphicsDevice));
+                                GameStateManager.ChangeGameState(new GameScene.GameScene(_game, _graphicsDevice), _content);
                                 break;
                             case 1:
+                                Console.WriteLine("load");
                                 break;
                             case 2:
+                                Console.WriteLine("settings");
                                 break;
                             case 3:
-                                _game.Exit();;
+                                _game.Exit();
+                                ;
                                 break;
                         }
                     }
@@ -138,7 +143,6 @@ namespace SpaceGameMono.Core.Scenes.Title
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-
             spriteBatch.Begin();
 
 
@@ -147,14 +151,15 @@ namespace SpaceGameMono.Core.Scenes.Title
             {
                 for (var j = 0; j < Config.Height; j += _background.Height)
                 {
-                    spriteBatch.Draw(_background, new Vector2( i, j), Color.White);
+                    spriteBatch.Draw(_background, new Vector2(i, j), Color.White);
                 }
             }
 
             // draw planet
             spriteBatch.Draw(
                 _planet, // Texture2D texture,
-                new Vector2((float) (Config.Width * 0.5), (float) (Config.Height + _planet.Height * 0.4)), // Vector2 position,
+                new Vector2((float) (Config.Width * 0.5),
+                    (float) (Config.Height + _planet.Height * 0.4)), // Vector2 position,
                 new Rectangle(0, 0, _planet.Width, _planet.Height), //Nullable<Rectangle> sourceRectangle,
                 Color.White, //Color color,
                 _planetRotation, //float rotation,
@@ -163,12 +168,13 @@ namespace SpaceGameMono.Core.Scenes.Title
                 SpriteEffects.None, //SpriteEffects effects,
                 0f //float layerDepth
             );
-               
+
             // draw menu
             foreach (var button in _titleButtons)
             {
                 button.Draw(_font, spriteBatch, _interfacePicture);
             }
+
             // draw mouse
             spriteBatch.Draw(Mouse.GetState().LeftButton == ButtonState.Pressed ? _cursorClicked : _cursorNormal,
                 new Vector2(

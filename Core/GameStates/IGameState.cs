@@ -4,21 +4,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceGameMono.Core.GameStates
 {
-    interface IGameState
+    public interface IGameState
     {
-        // Initialize the game settings here      
-        void Initialize();
-      
-        // Load all content here
-        void LoadContent(ContentManager content);
-       
-        // Unload any content here
+        void Init();
+        void LoadContent(ContentManager contentManager);
         void UnloadContent();
-
-        // Updates the game
         void Update(GameTime gameTime);
-
-        // Draws the game
         void Draw(SpriteBatch spriteBatch);
     }
 }

@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework.Input;
 
 namespace SpaceGameMono.Core.Scenes.Title
 {
-    
     public class TitleButton
     {
         private float _transparency = 0;
@@ -28,7 +27,7 @@ namespace SpaceGameMono.Core.Scenes.Title
             return (x > Destination.Left && x < Destination.Right
                                          && y > Destination.Top && y < Destination.Bottom);
         }
-        
+
         public void Update(GameTime gameTime)
         {
             if (PointInRect(Mouse.GetState().X, Mouse.GetState().Y))
@@ -46,16 +45,15 @@ namespace SpaceGameMono.Core.Scenes.Title
 
         public void Draw(SpriteFont font, SpriteBatch spriteBatch, Texture2D source)
         {
-            spriteBatch.Draw(source, 
+            spriteBatch.Draw(source,
                 Destination,
-                _menuInterface , 
+                _menuInterface,
                 new Color(0.4f + _transparency, 0.4f + _transparency, 0.4f + _transparency, 0.4f + _transparency));
 
             var textPos = font.MeasureString(Text);
             textPos.X = (int) ((Destination.Width - textPos.X) * 0.5) + Destination.Left;
             textPos.Y = (int) ((Destination.Height - textPos.Y) * 0.5) + Destination.Top;
             spriteBatch.DrawString(font, Text, textPos, Color.Black);
-
         }
     }
 }
