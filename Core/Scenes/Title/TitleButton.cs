@@ -11,9 +11,9 @@ namespace SpaceGameMono.Core.Scenes.Title
     {
         private float _transparency = 0;
 
-        public string Text { get; set; }
+        public string Text { private get; set; }
 
-        private static readonly Rectangle _menuInterface = new Rectangle(108, 36, 316, 66);
+        private static readonly Rectangle MenuInterface = new Rectangle(108, 36, 316, 66);
 
         public Rectangle Destination { get; set; }
 
@@ -47,7 +47,7 @@ namespace SpaceGameMono.Core.Scenes.Title
         {
             spriteBatch.Draw(source,
                 Destination,
-                _menuInterface,
+                MenuInterface,
                 new Color(0.4f + _transparency, 0.4f + _transparency, 0.4f + _transparency, 0.4f + _transparency));
 
             var textPos = font.MeasureString(Text);

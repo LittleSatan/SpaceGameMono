@@ -11,7 +11,6 @@ namespace SpaceGameMono.Core.Scenes.Title
 {
     public class Title : GameState
     {
-
         private const int DistanceButtons = 20;
 
         private Texture2D _title;
@@ -30,7 +29,13 @@ namespace SpaceGameMono.Core.Scenes.Title
         private float _planetRotation;
 
         private bool _inputAllowed = true;
-        private enum _currentMenu {Main = 0, Load, Settings};  
+
+        private enum _currentMenu
+        {
+            Main = 0,
+            Load,
+            Settings
+        };
 
         public Title(SpaceGame game, GraphicsDevice graphicsDevice)
             : base(game, graphicsDevice)
@@ -56,23 +61,21 @@ namespace SpaceGameMono.Core.Scenes.Title
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
-            _planet = _content.Load<Texture2D>("Title/planet");
-            _background = _content.Load<Texture2D>("Title/background");
-            _font = _content.Load<SpriteFont>("Title/TitleFont");
+            _planet = Content.Load<Texture2D>("Title/planet");
+            _background = Content.Load<Texture2D>("Title/background");
+            _font = Content.Load<SpriteFont>("Title/TitleFont");
 
-            _interfacePicture = _content.Load<Texture2D>("interface");
+            _interfacePicture = Content.Load<Texture2D>("interface");
 
-            _cursorNormal = _content.Load<Texture2D>("cursor");
-            _cursorClicked = _content.Load<Texture2D>("cursorAct");
+            _cursorNormal = Content.Load<Texture2D>("cursor");
+            _cursorClicked = Content.Load<Texture2D>("cursorAct");
 
             _music = content.Load<Song>("Title/TitleMusic");
 
             MediaPlayer.Volume = (float) (Config.Bgm * 0.1);
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(_music);
-
         }
-
 
 
         private void UpdateButtonPos()
@@ -122,7 +125,7 @@ namespace SpaceGameMono.Core.Scenes.Title
                         switch (i)
                         {
                             case 0:
-                                GameStateManager.ChangeGameState(new GameScene.GameScene(_game, _graphicsDevice));
+                                GameStateManager.ChangeGameState(new GameScene.GameScene(Game, GraphicsDevice));
                                 break;
                             case 1:
                                 Console.WriteLine("load");
@@ -131,7 +134,7 @@ namespace SpaceGameMono.Core.Scenes.Title
                                 Console.WriteLine("settings");
                                 break;
                             case 3:
-                                _game.Exit();
+                                Game.Exit();
                                 ;
                                 break;
                         }

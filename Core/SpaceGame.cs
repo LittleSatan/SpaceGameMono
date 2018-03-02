@@ -103,7 +103,7 @@ namespace SpaceGameMono.Core
         protected override void Update(GameTime gameTime)
         {
             if (GameStateManager.GetGameState() != null)
-            GameStateManager.GetGameState().Update(gameTime);
+                GameStateManager.GetGameState().Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -128,7 +128,7 @@ namespace SpaceGameMono.Core
             }
 
             if (GameStateManager.GetGameState() != null)
-            GameStateManager.GetGameState().Draw(_spriteBatch);
+                GameStateManager.GetGameState().Draw(_spriteBatch);
             base.Draw(gameTime);
         }
 

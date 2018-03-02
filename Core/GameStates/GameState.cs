@@ -7,30 +7,29 @@ namespace SpaceGameMono.Core.GameStates
 {
     public abstract class GameState : IGameState
     {
-        protected ContentManager _content;
-        protected readonly SpaceGame _game;
-        protected readonly GraphicsDevice _graphicsDevice;
+        protected ContentManager Content;
+        protected readonly SpaceGame Game;
+        protected readonly GraphicsDevice GraphicsDevice;
 
         protected GameState(SpaceGame game, GraphicsDevice graphicsDevice)
         {
-            _game = game;
-            _graphicsDevice = graphicsDevice;
+            Game = game;
+            GraphicsDevice = graphicsDevice;
         }
 
         public abstract void Init();
 
         public virtual void LoadContent(ContentManager content)
         {
-            _content = new ContentManager(content.ServiceProvider, content.RootDirectory);
+            Content = new ContentManager(content.ServiceProvider, content.RootDirectory);
         }
 
         public void UnloadContent()
         {
-            Console.WriteLine("unload now");
-            _content.Dispose();
-            _content.Unload();
+            Content.Dispose();
+            Content.Unload();
         }
-        
+
         public abstract void Update(GameTime gameTime);
         public abstract void Draw(SpriteBatch spriteBatch);
     }
