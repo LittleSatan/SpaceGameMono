@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
@@ -19,19 +21,18 @@ namespace SpaceGameMono.Core.Scenes.GameScene
         }
 
 
-        public override void Init()
+        public override async void Init()
         {
+            Console.WriteLine("start init");
+            System.Threading.Thread.Sleep(2000);
+            Console.WriteLine("end init");
         }
 
-        public override void LoadContent(ContentManager Content)
+        public override void LoadContent(ContentManager content)
         {
-            _planet = Content.Load<Texture2D>("Title/planet");
-            _content = Content;
-        }
+            base.LoadContent(content);
 
-        public override void UnloadContent()
-        {
-            _content.Unload();
+            _planet = _content.Load<Texture2D>("Title/planet");
         }
 
         public override void Update(GameTime gameTime)

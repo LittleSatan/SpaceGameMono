@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -7,6 +8,8 @@ namespace SpaceGameMono.Core.GameStates
 
     public static class GameStateManager
     {
+        public static ContentManager GlobalContent { get; set; }
+
         private static GameState _gameState;
         
         public static IGameState GetGameState()
@@ -14,17 +17,26 @@ namespace SpaceGameMono.Core.GameStates
             return _gameState;
         }
 
-        public static void ChangeGameState(GameState newGameState, ContentManager content)
+        public static void ChangeGameState(GameState newGameState)
         {
-            _gameState?.UnloadContent();
-            GameStateManager.SetGameState(newGameState, content);
+            Task.Factory.StartNew( () => {
+                newGameState.Init();
+                newGameState.LoadContent(GlobalContent);
+                GameState oldGameState = _gameState;
+                GlobalContent.Unload();
+                _gameState = newGameState;
+                Task.Factory.StartNew(() => oldGameState.UnloadContent());
+            });
         }
 
-        public static void SetGameState(GameState newGameState, ContentManager content)
+        public static void SetGameState(GameState newGameState)
         {
-            _gameState = newGameState;
-            _gameState.Init();
-            _gameState.LoadContent(content);
+            Task.Factory.StartNew( () => {
+                newGameState.Init();
+                newGameState.LoadContent(GlobalContent);
+                _gameState = newGameState;
+                
+            });
         }
 
         public static void LoadGameState(ContentManager contentManager)

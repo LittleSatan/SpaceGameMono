@@ -81,7 +81,8 @@ namespace SpaceGameMono.Core
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            GameStateManager.SetGameState(new Title(this, GraphicsDevice), Content);
+            GameStateManager.GlobalContent = Content;
+            GameStateManager.SetGameState(new Title(this, GraphicsDevice));
         }
 
         /// <summary>
@@ -101,6 +102,7 @@ namespace SpaceGameMono.Core
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            if (GameStateManager.GetGameState() != null)
             GameStateManager.GetGameState().Update(gameTime);
             base.Update(gameTime);
         }
@@ -125,6 +127,7 @@ namespace SpaceGameMono.Core
                 _graphics.ApplyChanges();
             }
 
+            if (GameStateManager.GetGameState() != null)
             GameStateManager.GetGameState().Draw(_spriteBatch);
             base.Draw(gameTime);
         }
