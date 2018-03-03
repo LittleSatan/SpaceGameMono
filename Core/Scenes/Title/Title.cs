@@ -19,7 +19,8 @@ namespace SpaceGameMono.Core.Scenes.Title
         private Texture2D _interfacePicture;
         private Texture2D _cursorNormal;
         private Texture2D _cursorClicked;
-        private SpriteFont _font;
+        private SpriteFont _menufont;
+        private SpriteFont _titlefont;
         private Song _music;
 
         private TitleButton[] _titleButtons;
@@ -63,8 +64,9 @@ namespace SpaceGameMono.Core.Scenes.Title
             base.LoadContent(content);
             _planet = Content.Load<Texture2D>("Title/planet");
             _background = Content.Load<Texture2D>("Title/background");
-            _font = Content.Load<SpriteFont>("Title/TitleFont");
-
+            _menufont = Content.Load<SpriteFont>("Title/MenuFont");
+            _titlefont = Content.Load<SpriteFont>("Title/TitleFont");
+            
             _interfacePicture = Content.Load<Texture2D>("interface");
 
             _cursorNormal = Content.Load<Texture2D>("cursor");
@@ -115,7 +117,7 @@ namespace SpaceGameMono.Core.Scenes.Title
 
             // if mouse just got pressed
             if (_oldMouseState.LeftButton == ButtonState.Released &&
-                Mouse.GetState().LeftButton == ButtonState.Pressed)
+                Mouse.GetState().LeftButton == ButtonState.Pressed && _inputAllowed)
             {
                 for (int i = 0; i < _titleButtons.Length; i++)
                 {
@@ -125,17 +127,20 @@ namespace SpaceGameMono.Core.Scenes.Title
                         switch (i)
                         {
                             case 0:
+                                _inputAllowed = false;
                                 GameStateManager.ChangeGameState(new GameScene.GameScene(Game, GraphicsDevice));
                                 break;
                             case 1:
+                                _inputAllowed = false;
                                 Console.WriteLine("load");
                                 break;
                             case 2:
+                                _inputAllowed = false;
                                 Console.WriteLine("settings");
                                 break;
                             case 3:
+                                _inputAllowed = false;
                                 Game.Exit();
-                                ;
                                 break;
                         }
                     }
@@ -173,10 +178,18 @@ namespace SpaceGameMono.Core.Scenes.Title
                 0f //float layerDepth
             );
 
+            // draw title text
+            var textRes = _titlefont.MeasureString("SpaceGame");
+            var textPos = new Vector2();
+            textPos.X = (int) ((Config.Width - textRes.X) * 0.5);
+            textPos.Y = _titleButtons[0].Destination.Top - DistanceButtons - textRes.Y;
+            spriteBatch.DrawString(_titlefont, "SpaceGame", textPos, Color.LimeGreen);
+
+            
             // draw menu
             foreach (var button in _titleButtons)
             {
-                button.Draw(_font, spriteBatch, _interfacePicture);
+                button.Draw(_menufont, spriteBatch, _interfacePicture);
             }
 
             // draw mouse

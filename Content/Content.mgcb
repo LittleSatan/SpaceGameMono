@@ -91,6 +91,9 @@
 /processorParam:TextureFormat=Color
 /build:Test.png
 
+#begin Title/Miramonte.ttf
+/copy:Title/Miramonte.ttf
+
 #begin Title/TitleFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -98,6 +101,10 @@
 /processorParam:TextureFormat=Compressed
 /build:Title/TitleFont.spritefont
 
-#begin Title/Miramonte.ttf
-/copy:Title/Miramonte.ttf
+#begin Title/MenuFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Title/MenuFont.spritefont
 
