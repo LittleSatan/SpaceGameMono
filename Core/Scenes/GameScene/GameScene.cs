@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,26 +10,32 @@ namespace SpaceGameMono.Core.Scenes.GameScene
 {
     public class GameScene : GameState
     {
-        private Texture2D _planet;
-
         private Song music;
 
+        private Map map;
+        
+        private Tile[,,] tiles;
 
+        private Texture2D tilesset;
+        
+        const int TileSize = 32;
+        
         public GameScene(SpaceGame game, GraphicsDevice graphicsDevice)
-            : base(game, graphicsDevice)
+            : base(game, graphicsDevice) 
         {
-        }
 
-
-        public override void Init()
-        {
         }
 
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
+            tilesset = Content.Load<Texture2D>("GameScene/tileset");
+        }
 
-            _planet = Content.Load<Texture2D>("Title/planet");
+        public override void Init()
+        {
+            map = new Map(100, 100, 32, tilesset);
+
         }
 
         public override void Update(GameTime gameTime)
@@ -39,8 +46,8 @@ namespace SpaceGameMono.Core.Scenes.GameScene
         {
             spriteBatch.Begin();
 
-            spriteBatch.Draw(_planet, new Vector2(50, 50), Color.White);
-
+            map.Draw(spriteBatch);
+            
             spriteBatch.End();
         }
     }

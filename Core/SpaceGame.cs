@@ -14,8 +14,8 @@ namespace SpaceGameMono.Core
     /// </summary>
     public class SpaceGame : Game
     {
-        private const int MIN_WINDOW_WIDTH = 800;
-        private const int MIN_WINDOW_HEIGHT = 600;
+        private const int MinWindowWidth = 800;
+        private const int MinWindowHeight = 600;
 
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -118,10 +118,10 @@ namespace SpaceGameMono.Core
             {
                 Config.Width = Window.ClientBounds.Width;
                 Config.Height = Window.ClientBounds.Height;
-                if (Config.Width < MIN_WINDOW_WIDTH)
-                    Config.Width = MIN_WINDOW_WIDTH;
-                if (Config.Height < MIN_WINDOW_HEIGHT)
-                    Config.Height = MIN_WINDOW_HEIGHT;
+                if (Config.Width < MinWindowWidth)
+                    Config.Width = MinWindowWidth;
+                if (Config.Height < MinWindowHeight)
+                    Config.Height = MinWindowHeight;
                 _graphics.PreferredBackBufferWidth = Config.Width;
                 _graphics.PreferredBackBufferHeight = Config.Height;
                 _graphics.ApplyChanges();

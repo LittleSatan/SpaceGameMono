@@ -17,13 +17,13 @@ namespace SpaceGameMono.Core.GameStates
             GraphicsDevice = graphicsDevice;
         }
 
-        public abstract void Init();
-
         public virtual void LoadContent(ContentManager content)
         {
             Content = new ContentManager(content.ServiceProvider, content.RootDirectory);
         }
 
+        public abstract void Init();
+        
         public void UnloadContent()
         {
             Content.Dispose();

@@ -20,8 +20,8 @@ namespace SpaceGameMono.Core.GameStates
         {
             Task.Factory.StartNew(() =>
             {
-                newGameState.Init();
                 newGameState.LoadContent(GlobalContent);
+                newGameState.Init();
                 GameState oldGameState = _gameState;
                 GlobalContent.Unload();
                 _gameState = newGameState;
@@ -31,8 +31,8 @@ namespace SpaceGameMono.Core.GameStates
 
         public static void SetGameState(GameState newGameState)
         {
-            newGameState.Init();
             newGameState.LoadContent(GlobalContent);
+            newGameState.Init();
             _gameState = newGameState;
         }
 

@@ -43,22 +43,6 @@ namespace SpaceGameMono.Core.Scenes.Title
         {
         }
 
-        public override void Init()
-        {
-            _oldMouseState = Mouse.GetState();
-            _titleButtons = new TitleButton[4];
-            for (int i = 0; i < _titleButtons.Length; i++)
-            {
-                _titleButtons[i] = new TitleButton(0, 0, 360, 100);
-            }
-
-            _titleButtons[0].Text = "New Game";
-            _titleButtons[1].Text = "Load Game";
-            _titleButtons[2].Text = "Settings";
-            _titleButtons[3].Text = "Exit";
-            UpdateButtonPos();
-        }
-
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
@@ -78,7 +62,22 @@ namespace SpaceGameMono.Core.Scenes.Title
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(_music);
         }
+        
+        public override void Init()
+        {
+            _oldMouseState = Mouse.GetState();
+            _titleButtons = new TitleButton[4];
+            for (int i = 0; i < _titleButtons.Length; i++)
+            {
+                _titleButtons[i] = new TitleButton(0, 0, 360, 100);
+            }
 
+            _titleButtons[0].Text = "New Game";
+            _titleButtons[1].Text = "Load Game";
+            _titleButtons[2].Text = "Settings";
+            _titleButtons[3].Text = "Exit";
+            UpdateButtonPos();
+        }
 
         private void UpdateButtonPos()
         {
@@ -119,30 +118,25 @@ namespace SpaceGameMono.Core.Scenes.Title
             if (_oldMouseState.LeftButton == ButtonState.Released &&
                 Mouse.GetState().LeftButton == ButtonState.Pressed && _inputAllowed)
             {
-                for (int i = 0; i < _titleButtons.Length; i++)
+                for (var i = 0; i < _titleButtons.Length; i++)
                 {
                     _titleButtons[i].Update(gameTime);
-                    if (_titleButtons[i].PointInRect(Mouse.GetState().X, Mouse.GetState().Y))
+                    if (!_titleButtons[i].PointInRect(Mouse.GetState().X, Mouse.GetState().Y)) continue;
+                    _inputAllowed = false;
+                    switch (i)
                     {
-                        switch (i)
-                        {
-                            case 0:
-                                _inputAllowed = false;
-                                GameStateManager.ChangeGameState(new GameScene.GameScene(Game, GraphicsDevice));
-                                break;
-                            case 1:
-                                _inputAllowed = false;
-                                Console.WriteLine("load");
-                                break;
-                            case 2:
-                                _inputAllowed = false;
-                                Console.WriteLine("settings");
-                                break;
-                            case 3:
-                                _inputAllowed = false;
-                                Game.Exit();
-                                break;
-                        }
+                        case 0:
+                            GameStateManager.ChangeGameState(new GameScene.GameScene(Game, GraphicsDevice));
+                            break;
+                        case 1:
+                            Console.WriteLine("load");
+                            break;
+                        case 2:
+                            Console.WriteLine("settings");
+                            break;
+                        case 3:
+                            Game.Exit();
+                            break;
                     }
                 }
             }
