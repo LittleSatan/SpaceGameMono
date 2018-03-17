@@ -39,7 +39,7 @@ namespace SpaceGameMono.Core.Scenes.GameScene
 
         public override void Init()
         {
-            _map = new Map(50, 30, TileSize, _tilesset);
+            _map = new Map(200, 200, TileSize, _tilesset);
 
         }
 

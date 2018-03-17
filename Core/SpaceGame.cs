@@ -47,8 +47,9 @@ namespace SpaceGameMono.Core
                 (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 2) -
                 (_graphics.PreferredBackBufferHeight / 2));
 
+            
             _graphics.ApplyChanges();
-
+            
             Content.RootDirectory = "Content";
         }
 

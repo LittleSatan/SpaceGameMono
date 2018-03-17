@@ -48,10 +48,11 @@ namespace SpaceGameMono.Core.Scenes.GameScene
 
         public void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Right)) _camera.X += gameTime.ElapsedGameTime.Milliseconds / 4;
-            if (Keyboard.GetState().IsKeyDown(Keys.Left)) _camera.X -= gameTime.ElapsedGameTime.Milliseconds / 4;
-            if (Keyboard.GetState().IsKeyDown(Keys.Down)) _camera.Y += gameTime.ElapsedGameTime.Milliseconds / 4;
-            if (Keyboard.GetState().IsKeyDown(Keys.Up)) _camera.Y -= gameTime.ElapsedGameTime.Milliseconds / 4;
+            var scrollSpeed = (int) (gameTime.ElapsedGameTime.TotalMilliseconds / 4f);
+            if (Keyboard.GetState().IsKeyDown(Keys.Right)) _camera.X += scrollSpeed;
+            if (Keyboard.GetState().IsKeyDown(Keys.Left)) _camera.X -= scrollSpeed;
+            if (Keyboard.GetState().IsKeyDown(Keys.Down)) _camera.Y += scrollSpeed;
+            if (Keyboard.GetState().IsKeyDown(Keys.Up)) _camera.Y -= scrollSpeed;
         }
 
         public void Draw(SpriteBatch spriteBatch)
