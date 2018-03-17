@@ -9,6 +9,7 @@ namespace SpaceGameMono.Core.GameStates
         void LoadContent(ContentManager content);
         void Init();
         void UnloadContent();
+        void Resize();
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
     }

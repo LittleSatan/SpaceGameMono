@@ -125,6 +125,8 @@ namespace SpaceGameMono.Core
                 _graphics.PreferredBackBufferWidth = Config.Width;
                 _graphics.PreferredBackBufferHeight = Config.Height;
                 _graphics.ApplyChanges();
+                if (GameStateManager.GetGameState() != null)
+                    GameStateManager.GetGameState().Resize();                
             }
 
             if (GameStateManager.GetGameState() != null)

@@ -38,8 +38,14 @@ namespace SpaceGameMono.Core.Scenes.GameScene
 
         }
 
+        public override void Resize()
+        {
+            map.Resize();
+        }
+
         public override void Update(GameTime gameTime)
         {
+            map.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

@@ -79,6 +79,11 @@ namespace SpaceGameMono.Core.Scenes.Title
             UpdateButtonPos();
         }
 
+        public override void Resize()
+        {
+            
+        }
+
         private void UpdateButtonPos()
         {
             for (int i = 0; i < _titleButtons.Length; i++)

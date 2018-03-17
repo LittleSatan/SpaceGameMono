@@ -23,6 +23,7 @@ namespace SpaceGameMono.Core.GameStates
         }
 
         public abstract void Init();
+        public abstract void Resize();
         
         public void UnloadContent()
         {

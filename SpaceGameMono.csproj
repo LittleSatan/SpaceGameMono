@@ -49,6 +49,7 @@
     <Compile Include="Core\GameStates\IGameState.cs" />
       <Compile Include="Core\Scenes\GameScene\Entity.cs"/>
     <Compile Include="Core\Scenes\GameScene\GameScene.cs" />
+      <Compile Include="Core\Scenes\GameScene\Map\Camera.cs"/>
       <Compile Include="Core\Scenes\GameScene\Map\Map.cs"/>
       <Compile Include="Core\Scenes\GameScene\Map\Tile.cs"/>
       <Compile Include="Core\Scenes\GameScene\Player.cs"/>
