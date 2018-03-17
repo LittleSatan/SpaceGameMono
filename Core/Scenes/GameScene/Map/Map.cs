@@ -20,7 +20,7 @@ namespace SpaceGameMono.Core.Scenes.GameScene
         
         public Map(int mapWidth, int mapHeight, int tileSize, Texture2D tileset)
         {
-            _tiles = new Tile[40,20,1];
+            _tiles = new Tile[mapWidth,mapHeight,1];
             _tileSize = tileSize;
             _tileset = tileset;
             _camera = new Camera(0, 0, _tiles.GetLength(0) * _tileSize, _tiles.GetLength(1) * _tileSize);

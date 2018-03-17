@@ -39,7 +39,7 @@ namespace SpaceGameMono.Core.Scenes.GameScene
 
         public override void Init()
         {
-            _map = new Map(100, 100, TileSize, _tilesset);
+            _map = new Map(50, 30, TileSize, _tilesset);
 
         }
 
@@ -57,8 +57,10 @@ namespace SpaceGameMono.Core.Scenes.GameScene
         {
             spriteBatch.Begin();
 
-            // draw mpa
+            // draw map
             _map.Draw(spriteBatch);
+
+            // draw hud
             
             // draw mouse
             spriteBatch.Draw(Mouse.GetState().LeftButton == ButtonState.Pressed ? _cursorClicked : _cursorNormal,
@@ -66,7 +68,6 @@ namespace SpaceGameMono.Core.Scenes.GameScene
                     Mouse.GetState().X,
                     Mouse.GetState().Y), Color.White);
 
-            
             spriteBatch.End();
         }
     }
