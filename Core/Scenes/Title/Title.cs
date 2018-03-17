@@ -31,6 +31,9 @@ namespace SpaceGameMono.Core.Scenes.Title
 
         private bool _inputAllowed = true;
 
+        private bool _hideMenu;
+        private int _hideMenuTime;
+
         private enum _currentMenu
         {
             Main = 0,
@@ -76,6 +79,8 @@ namespace SpaceGameMono.Core.Scenes.Title
             _titleButtons[1].Text = "Load Game";
             _titleButtons[2].Text = "Settings";
             _titleButtons[3].Text = "Exit";
+
+            _hideMenuTime = 0;
             UpdateButtonPos();
         }
 
@@ -92,8 +97,8 @@ namespace SpaceGameMono.Core.Scenes.Title
                 int midY = (int) (Config.Height * 0.5);
                 _titleButtons[i].Destination = new Rectangle(
                     i == 0 || i == 2
-                        ? midX - DistanceButtons - _titleButtons[i].Destination.Width
-                        : midX + DistanceButtons,
+                        ? midX - DistanceButtons - _titleButtons[i].Destination.Width - _hideMenuTime
+                        : midX + DistanceButtons + _hideMenuTime,
                     i == 0 || i == 1
                         ? midY - DistanceButtons - _titleButtons[i].Destination.Height
                         : midY + DistanceButtons,
@@ -105,6 +110,9 @@ namespace SpaceGameMono.Core.Scenes.Title
 
         public override void Update(GameTime gameTime)
         {
+            if (_hideMenu)
+                    _hideMenuTime += gameTime.ElapsedGameTime.Milliseconds / 8;
+
             UpdateButtonPos();
 
             _xPositionBackground -= (float) (gameTime.ElapsedGameTime.Milliseconds * 0.04);
@@ -131,12 +139,15 @@ namespace SpaceGameMono.Core.Scenes.Title
                     switch (i)
                     {
                         case 0:
+                            _hideMenu = true;
                             GameStateManager.ChangeGameState(new GameScene.GameScene(Game, GraphicsDevice));
                             break;
                         case 1:
+                            _hideMenu = true;
                             Console.WriteLine("load");
                             break;
                         case 2:
+                            _hideMenu = true;
                             Console.WriteLine("settings");
                             break;
                         case 3:

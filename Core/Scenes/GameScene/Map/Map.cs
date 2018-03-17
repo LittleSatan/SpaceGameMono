@@ -10,27 +10,27 @@ namespace SpaceGameMono.Core.Scenes.GameScene
 {
     public class Map
     {
-        private readonly Texture2D _tileset;
         private readonly int _tileSize;
         private Tile[,,] _tiles;
         private Player _player;
         private Entity[] _entities;
-
-        private Camera _camera;
-
+        private readonly Camera _camera;
+        
+        private readonly Texture2D _tileset;
+        
         public Map(int mapWidth, int mapHeight, int tileSize, Texture2D tileset)
         {
-            _tiles = new Tile[80,40,1];
+            _tiles = new Tile[40,20,1];
             _tileSize = tileSize;
             _tileset = tileset;
             _camera = new Camera(0, 0, _tiles.GetLength(0) * _tileSize, _tiles.GetLength(1) * _tileSize);
 
-            Random r = new Random();
-            for (int x = 0; x < _tiles.GetLength(0); x++)
+            var r = new Random();
+            for (var x = 0; x < _tiles.GetLength(0); x++)
             {
-                for (int y = 0; y < _tiles.GetLength(1); y++)
+                for (var y = 0; y < _tiles.GetLength(1); y++)
                 {
-                    for (int z = 0; z < _tiles.GetLength(2); z++)
+                    for (var z = 0; z < _tiles.GetLength(2); z++)
                     {
                         _tiles[x,y,z] = new Tile(false, r.Next(23, 27), x, y, _tileSize);
                     }
@@ -67,11 +67,15 @@ namespace SpaceGameMono.Core.Scenes.GameScene
                 endX = _tiles.GetLength(0);
             if (endY > _tiles.GetLength(1))
                 endY = _tiles.GetLength(1);
+
+            int offsetX = _camera.ScrollX ? _camera.X : (Config.Width - _tiles.GetLength(0) * _tileSize) / -2;
+            int offsetY = _camera.ScrollY ? _camera.Y : (Config.Height - _tiles.GetLength(1) * _tileSize) / -2;
+            
             // draw all tiles
             for (int x = startX; x < endX; x++)
                 for (int y = startY; y < endY; y++)
                     for (int z = 0; z < _tiles.GetLength(2); z++)
-                        _tiles[x,y,z].Draw(spriteBatch, _tileset, _camera.X, _camera.Y);
+                        _tiles[x,y,z].Draw(spriteBatch, _tileset, offsetX, offsetY);
         }
         
     }

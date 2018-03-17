@@ -3,6 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SpaceGameMono.Core.GameStates;
 
@@ -10,13 +11,15 @@ namespace SpaceGameMono.Core.Scenes.GameScene
 {
     public class GameScene : GameState
     {
-        private Song music;
 
-        private Map map;
+        private Map _map;
         
-        private Tile[,,] tiles;
+        private Tile[,,] _tiles;
 
-        private Texture2D tilesset;
+        private Song _music;
+        private Texture2D _tilesset;
+        private Texture2D _cursorNormal;
+        private Texture2D _cursorClicked;
         
         const int TileSize = 32;
         
@@ -29,30 +32,40 @@ namespace SpaceGameMono.Core.Scenes.GameScene
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
-            tilesset = Content.Load<Texture2D>("GameScene/tileset");
+            _tilesset = Content.Load<Texture2D>("GameScene/tileset");
+            _cursorNormal = Content.Load<Texture2D>("cursor");
+            _cursorClicked = Content.Load<Texture2D>("cursorAct");
         }
 
         public override void Init()
         {
-            map = new Map(100, 100, 32, tilesset);
+            _map = new Map(100, 100, TileSize, _tilesset);
 
         }
 
         public override void Resize()
         {
-            map.Resize();
+            _map.Resize();
         }
 
         public override void Update(GameTime gameTime)
         {
-            map.Update(gameTime);
+            _map.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
 
-            map.Draw(spriteBatch);
+            // draw mpa
+            _map.Draw(spriteBatch);
+            
+            // draw mouse
+            spriteBatch.Draw(Mouse.GetState().LeftButton == ButtonState.Pressed ? _cursorClicked : _cursorNormal,
+                new Vector2(
+                    Mouse.GetState().X,
+                    Mouse.GetState().Y), Color.White);
+
             
             spriteBatch.End();
         }
