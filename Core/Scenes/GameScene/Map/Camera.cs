@@ -11,9 +11,6 @@ namespace SpaceGameMono.Core.Scenes.GameScene
             get => _x;
             set
             {
-//                _x = value < 0 ? 0 : value;
-//                if (_x != 0)
-//                    _x = value > _maxX ? _maxX : value;
                 if (value < 0)
                 {
                     _x = 0;
@@ -51,8 +48,8 @@ namespace SpaceGameMono.Core.Scenes.GameScene
 
         private int _maxX;
         private int _maxY;
-        readonly int _width;
-        readonly int _height;
+        private readonly int _width;
+        private readonly int _height;
         public Camera(int x, int y, int width, int height)
         {
             _x = x;
