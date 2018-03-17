@@ -40,6 +40,7 @@ namespace SpaceGameMono.Core.Scenes.GameScene
             Rectangle destinationRectangle = new Rectangle(_x * _tileSize - offsetX, _y * _tileSize - offsetY, _tileSize, _tileSize);            
             spriteBatch.Draw(tileset, destinationRectangle, sourceRectangle, Color.White);
         }
+
     }
 
 }

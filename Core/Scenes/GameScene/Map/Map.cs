@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Security.Policy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -19,7 +20,7 @@ namespace SpaceGameMono.Core.Scenes.GameScene
 
         public Map(int mapWidth, int mapHeight, int tileSize, Texture2D tileset)
         {
-            _tiles = new Tile[80,40,3];
+            _tiles = new Tile[80,40,1];
             _tileSize = tileSize;
             _tileset = tileset;
             _camera = new Camera(0, 0, _tiles.GetLength(0) * _tileSize, _tiles.GetLength(1) * _tileSize);
@@ -55,10 +56,22 @@ namespace SpaceGameMono.Core.Scenes.GameScene
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Tile tile in _tiles)
-            {
-                tile.Draw(spriteBatch, _tileset, _camera.X, _camera.Y);
-            }
+            // start to draw at
+            int startX = _camera.X / _tileSize;
+            int startY = _camera.Y / _tileSize;
+            // ent to draw at
+            int endX = startX + ((Config.Width + _tileSize - 1) / _tileSize) + 1;
+            int endY = startY + ((Config.Height + _tileSize - 1) / _tileSize) + 1;
+            // dont leave the map
+            if (endX > _tiles.GetLength(0))
+                endX = _tiles.GetLength(0);
+            if (endY > _tiles.GetLength(1))
+                endY = _tiles.GetLength(1);
+            // draw all tiles
+            for (int x = startX; x < endX; x++)
+                for (int y = startY; y < endY; y++)
+                    for (int z = 0; z < _tiles.GetLength(2); z++)
+                        _tiles[x,y,z].Draw(spriteBatch, _tileset, _camera.X, _camera.Y);
         }
         
     }
