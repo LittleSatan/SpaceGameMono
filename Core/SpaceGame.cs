@@ -19,6 +19,12 @@ namespace SpaceGameMono.Core
 
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        
+        private MouseCursor _cursorNormal;
+        private MouseCursor _cursorClicked;
+
+        private MouseState _mousePrevState;
+
 
         private bool _resizeWindowRequested;
 
@@ -83,6 +89,14 @@ namespace SpaceGameMono.Core
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            
+            _cursorNormal = MouseCursor.FromTexture2D(Content.Load<Texture2D>("cursor"), 0, 0);
+            _cursorClicked = MouseCursor.FromTexture2D(Content.Load<Texture2D>("cursorAct"), 0, 0);
+            Mouse.SetCursor(Mouse.GetState().LeftButton == ButtonState.Released
+                ? _cursorNormal
+                : _cursorClicked);
+
+            
             GameStateManager.GlobalContent = Content;
             GameStateManager.SetGameState(new Title(this, GraphicsDevice));
         }
@@ -104,6 +118,16 @@ namespace SpaceGameMono.Core
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            
+            if (Mouse.GetState().LeftButton != _mousePrevState.LeftButton)
+            {
+                Mouse.SetCursor(Mouse.GetState().LeftButton == ButtonState.Released
+                    ? _cursorNormal
+                    : _cursorClicked);
+                _mousePrevState = Mouse.GetState();
+            }
+
+            
             if (GameStateManager.GetGameState() != null)
                 GameStateManager.GetGameState().Update(gameTime);
             base.Update(gameTime);

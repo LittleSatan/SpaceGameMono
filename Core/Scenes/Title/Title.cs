@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,8 +18,6 @@ namespace SpaceGameMono.Core.Scenes.Title
         private Texture2D _planet;
         private Texture2D _background;
         private Texture2D _interfacePicture;
-        private Texture2D _cursorNormal;
-        private Texture2D _cursorClicked;
         private SpriteFont _menufont;
         private SpriteFont _titlefont;
         private Song _music;
@@ -57,9 +56,6 @@ namespace SpaceGameMono.Core.Scenes.Title
             
             _interfacePicture = Content.Load<Texture2D>("interface");
 
-            _cursorNormal = Content.Load<Texture2D>("cursor");
-            _cursorClicked = Content.Load<Texture2D>("cursorAct");
-
             _music = content.Load<Song>("Title/TitleMusic");
 
             MediaPlayer.Volume = (float) (Config.Bgm * 0.1);
@@ -83,12 +79,7 @@ namespace SpaceGameMono.Core.Scenes.Title
 
             _hideMenuTime = 0;
             UpdateButtonPos();
-            
-            Mouse.SetCursor(Mouse.GetState().LeftButton == ButtonState.Pressed
-                ? MouseCursor.FromTexture2D(_cursorClicked, 0, 0)
-                : MouseCursor.FromTexture2D(_cursorNormal, 0, 0));
-
-            
+                        
         }
 
         public override void Resize()
@@ -117,14 +108,6 @@ namespace SpaceGameMono.Core.Scenes.Title
 
         public override void Update(GameTime gameTime)
         {
-
-            if (Mouse.GetState() != _mousePrevState)
-            {
-                Mouse.SetCursor(Mouse.GetState().LeftButton == ButtonState.Pressed
-                    ? MouseCursor.FromTexture2D(_cursorClicked, 0, 0)
-                    : MouseCursor.FromTexture2D(_cursorNormal, 0, 0));
-            }
-
             
             if (_hideMenu)
                     _hideMenuTime += gameTime.ElapsedGameTime.Milliseconds / 8;

@@ -18,14 +18,14 @@ namespace SpaceGameMono.Core.GameStates
 
         public static void ChangeGameState(GameState newGameState)
         {
-            Task.Factory.StartNew(() =>
+            Task.Run( () => 
             {
                 newGameState.LoadContent(GlobalContent);
                 newGameState.Init();
                 GameState oldGameState = _gameState;
                 GlobalContent.Unload();
                 _gameState = newGameState;
-                Task.Factory.StartNew(() => oldGameState.UnloadContent());
+                oldGameState.UnloadContent();
             });
         }
 

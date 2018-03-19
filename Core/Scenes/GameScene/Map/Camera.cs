@@ -5,17 +5,17 @@ namespace SpaceGameMono.Core.Scenes.GameScene
 {
     public class Camera
     {
-        private int _x;
+        private float _x;
 
-        public int X
+        public float X
         {
             get => _x;
             set => _x = MathHelper.Clamp(value, 0, _maxX);
         }
 
-        private int _y;
+        private float _y;
 
-        public int Y
+        public float Y
         {
             get => _y;
             set => _y = MathHelper.Clamp(value, 0, _maxY);

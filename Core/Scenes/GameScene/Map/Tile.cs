@@ -31,7 +31,7 @@ namespace SpaceGameMono.Core.Scenes.GameScene
             
         }
         
-        public void Draw(SpriteBatch spriteBatch, Texture2D tileset, int offsetX, int offsetY)
+        public void Draw(SpriteBatch spriteBatch, Texture2D tileset)
         {
 //            Rectangle destinationRectangle = new Rectangle(_x * _tileSize - offsetX, _y * _tileSize - offsetY, _tileSize, _tileSize);            
 //            spriteBatch.Draw(tileset, destinationRectangle, _sourceRectangle, Color.White);
