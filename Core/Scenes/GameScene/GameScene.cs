@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Eventing.Reader;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -20,8 +21,10 @@ namespace SpaceGameMono.Core.Scenes.GameScene
         private Texture2D _tilesset;
         private Texture2D _cursorNormal;
         private Texture2D _cursorClicked;
-        
-        const int TileSize = 32;
+
+        private MouseState _mousePrevState;
+
+        private const int TileSize = 32;
         
         public GameScene(SpaceGame game, GraphicsDevice graphicsDevice)
             : base(game, graphicsDevice) 
@@ -40,7 +43,7 @@ namespace SpaceGameMono.Core.Scenes.GameScene
         public override void Init()
         {
             _map = new Map(200, 200, TileSize, _tilesset);
-
+            _mousePrevState = Mouse.GetState();
         }
 
         public override void Resize()
@@ -55,18 +58,26 @@ namespace SpaceGameMono.Core.Scenes.GameScene
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
 
             // draw map
             _map.Draw(spriteBatch);
 
+            spriteBatch.Begin();
+
             // draw hud
             
             // draw mouse
-            spriteBatch.Draw(Mouse.GetState().LeftButton == ButtonState.Pressed ? _cursorClicked : _cursorNormal,
-                new Vector2(
-                    Mouse.GetState().X,
-                    Mouse.GetState().Y), Color.White);
+            if (Mouse.GetState() != _mousePrevState)
+            {
+                Mouse.SetCursor(Mouse.GetState().LeftButton == ButtonState.Pressed
+                    ? MouseCursor.FromTexture2D(_cursorClicked, 0, 0)
+                    : MouseCursor.FromTexture2D(_cursorNormal, 0, 0));
+            }
+                
+//            spriteBatch.Draw(Mouse.GetState().LeftButton == ButtonState.Pressed ? _cursorClicked : _cursorNormal,
+//                new Vector2(
+//                    Mouse.GetState().X,
+//                    Mouse.GetState().Y), Color.White);
 
             spriteBatch.End();
         }

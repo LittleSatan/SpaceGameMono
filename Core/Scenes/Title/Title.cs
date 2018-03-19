@@ -33,6 +33,7 @@ namespace SpaceGameMono.Core.Scenes.Title
 
         private bool _hideMenu;
         private int _hideMenuTime;
+        private MouseState _mousePrevState;
 
         private enum _currentMenu
         {
@@ -82,6 +83,12 @@ namespace SpaceGameMono.Core.Scenes.Title
 
             _hideMenuTime = 0;
             UpdateButtonPos();
+            
+            Mouse.SetCursor(Mouse.GetState().LeftButton == ButtonState.Pressed
+                ? MouseCursor.FromTexture2D(_cursorClicked, 0, 0)
+                : MouseCursor.FromTexture2D(_cursorNormal, 0, 0));
+
+            
         }
 
         public override void Resize()
@@ -110,6 +117,15 @@ namespace SpaceGameMono.Core.Scenes.Title
 
         public override void Update(GameTime gameTime)
         {
+
+            if (Mouse.GetState() != _mousePrevState)
+            {
+                Mouse.SetCursor(Mouse.GetState().LeftButton == ButtonState.Pressed
+                    ? MouseCursor.FromTexture2D(_cursorClicked, 0, 0)
+                    : MouseCursor.FromTexture2D(_cursorNormal, 0, 0));
+            }
+
+            
             if (_hideMenu)
                     _hideMenuTime += gameTime.ElapsedGameTime.Milliseconds / 8;
 
@@ -201,12 +217,6 @@ namespace SpaceGameMono.Core.Scenes.Title
             {
                 button.Draw(_menufont, spriteBatch, _interfacePicture);
             }
-
-            // draw mouse
-            spriteBatch.Draw(Mouse.GetState().LeftButton == ButtonState.Pressed ? _cursorClicked : _cursorNormal,
-                new Vector2(
-                    Mouse.GetState().X,
-                    Mouse.GetState().Y), Color.White);
 
             spriteBatch.End();
         }

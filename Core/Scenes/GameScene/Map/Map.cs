@@ -72,11 +72,21 @@ namespace SpaceGameMono.Core.Scenes.GameScene
             int offsetX = _camera.ScrollX ? _camera.X : (Config.Width - _tiles.GetLength(0) * _tileSize) / -2;
             int offsetY = _camera.ScrollY ? _camera.Y : (Config.Height - _tiles.GetLength(1) * _tileSize) / -2;
             
+            spriteBatch.Begin(
+                transformMatrix: Matrix.CreateTranslation(
+                    -_camera.X,
+                    -_camera.Y,
+                    0f
+                )
+            );
+            
             // draw all tiles
             for (int x = startX; x < endX; x++)
                 for (int y = startY; y < endY; y++)
                     for (int z = 0; z < _tiles.GetLength(2); z++)
                         _tiles[x,y,z].Draw(spriteBatch, _tileset, offsetX, offsetY);
+            
+            spriteBatch.End();
         }
         
     }

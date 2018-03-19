@@ -24,11 +24,9 @@ namespace SpaceGameMono.Core.Scenes.GameScene
         private int _maxX;
         private int _maxY;
 
-        private bool _scrollX;
-        private bool _scroolY;
+        public bool ScrollX { get; private set; }
 
-        public bool ScrollX => _scrollX;
-        public bool ScrollY => _scroolY;
+        public bool ScrollY { get; private set; }
 
         private readonly int _width;
         private readonly int _height;
@@ -47,16 +45,16 @@ namespace SpaceGameMono.Core.Scenes.GameScene
             if (_maxX < 0)
             {
                 _maxX = 0;
-                _scrollX = false;
+                ScrollX = false;
             }
-            else _scrollX = true;
+            else ScrollX = true;
             _maxY = _height - Config.Height;
             if (_maxY < 0)
             {
                 _maxY = 0;
-                _scroolY = false;
+                ScrollY = false;
             }
-            else _scroolY = true;
+            else ScrollY = true;
             _x = _x > _maxX ? _maxX : _x;
             _y = _y > _maxY ? _maxY : _y;
         }
