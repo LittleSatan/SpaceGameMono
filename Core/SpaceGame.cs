@@ -41,7 +41,7 @@ namespace SpaceGameMono.Core
             {
                 Config.SaveConfig();
             }
-
+            
             _graphics.PreferredBackBufferWidth = Config.Width;
             _graphics.PreferredBackBufferHeight = Config.Height;
             _graphics.IsFullScreen = Config.Fullscreen;

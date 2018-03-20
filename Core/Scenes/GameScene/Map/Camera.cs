@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.Xna.Framework;
 
-namespace SpaceGameMono.Core.Scenes.GameScene
+namespace SpaceGameMono.Core.Scenes.GameScene.Map
 {
     public class Camera
     {

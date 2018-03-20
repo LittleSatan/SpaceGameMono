@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Security.Policy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace SpaceGameMono.Core.Scenes.GameScene
+namespace SpaceGameMono.Core.Scenes.GameScene.Map
 {
     public class Map
     {
@@ -22,7 +19,7 @@ namespace SpaceGameMono.Core.Scenes.GameScene
         
         public Map(int mapWidth, int mapHeight, int tileSize, Texture2D tileset)
         {
-            _tiles = new Tile[mapWidth,mapHeight,1];
+            _tiles = new Tile[mapWidth, mapHeight, 1];
             _tileSize = tileSize;
             _tileset = tileset;
             _camera = new Camera(0, 0, _tiles.GetLength(0) * _tileSize, _tiles.GetLength(1) * _tileSize);
@@ -42,7 +39,7 @@ namespace SpaceGameMono.Core.Scenes.GameScene
 
         public void Update(GameTime gameTime)
         {
-            float scrollSpeed = (float) (gameTime.ElapsedGameTime.TotalMilliseconds / 8f);
+            float scrollSpeed = (float) (gameTime.ElapsedGameTime.TotalMilliseconds / 4f);
             if (Keyboard.GetState().IsKeyDown(Keys.Right)) _camera.X += scrollSpeed;
             if (Keyboard.GetState().IsKeyDown(Keys.Left)) _camera.X -= scrollSpeed;
             if (Keyboard.GetState().IsKeyDown(Keys.Down)) _camera.Y += scrollSpeed;
@@ -68,7 +65,7 @@ namespace SpaceGameMono.Core.Scenes.GameScene
         {
             spriteBatch.Begin(
                 transformMatrix: Matrix.CreateTranslation(
-                    (float) -Math.Round((decimal) offsetX),
+                    -offsetX,
                     -offsetY,
                     0f
                 )
@@ -78,8 +75,9 @@ namespace SpaceGameMono.Core.Scenes.GameScene
             for (int x = startX; x < endX; x++)
                 for (int y = startY; y < endY; y++)
                     for (int z = 0; z < _tiles.GetLength(2); z++)
+                    {
                         _tiles[x,y,z].Draw(spriteBatch, _tileset);
-            
+                    }
             spriteBatch.End();
         }
         

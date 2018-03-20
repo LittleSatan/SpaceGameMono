@@ -27,19 +27,10 @@ namespace SpaceGameMono.Core.Scenes.Title
 
         private float _xPositionBackground;
         private float _planetRotation;
+        private bool _hideMenu;
+        private float _hideMenuTime;
 
         private bool _inputAllowed = true;
-
-        private bool _hideMenu;
-        private int _hideMenuTime;
-        private MouseState _mousePrevState;
-
-        private enum _currentMenu
-        {
-            Main = 0,
-            Load,
-            Settings
-        };
 
         public Title(SpaceGame game, GraphicsDevice graphicsDevice)
             : base(game, graphicsDevice)
@@ -95,8 +86,8 @@ namespace SpaceGameMono.Core.Scenes.Title
                 int midY = (int) (Config.Height * 0.5);
                 _titleButtons[i].Destination = new Rectangle(
                     i == 0 || i == 2
-                        ? midX - DistanceButtons - _titleButtons[i].Destination.Width - _hideMenuTime
-                        : midX + DistanceButtons + _hideMenuTime,
+                        ? midX - DistanceButtons - _titleButtons[i].Destination.Width - (int) _hideMenuTime
+                        : midX + DistanceButtons + (int) _hideMenuTime,
                     i == 0 || i == 1
                         ? midY - DistanceButtons - _titleButtons[i].Destination.Height
                         : midY + DistanceButtons,
@@ -110,15 +101,15 @@ namespace SpaceGameMono.Core.Scenes.Title
         {
             
             if (_hideMenu)
-                    _hideMenuTime += gameTime.ElapsedGameTime.Milliseconds / 8;
+                    _hideMenuTime += gameTime.ElapsedGameTime.Milliseconds / 8f;
 
             UpdateButtonPos();
 
-            _xPositionBackground -= (float) (gameTime.ElapsedGameTime.Milliseconds * 0.04);
+            _xPositionBackground -= gameTime.ElapsedGameTime.Milliseconds * 0.04f;
             _xPositionBackground %= _background.Width;
 
-            _planetRotation += (float) 0.0005;
-            _planetRotation %= (float) Math.PI * 2;
+            _planetRotation += 0.0005f;
+            _planetRotation %= (float) Math.PI * 2f;
 
             // draw menu
             foreach (var button in _titleButtons)

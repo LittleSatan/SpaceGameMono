@@ -1,33 +1,31 @@
 ﻿using System;
-using System.Diagnostics.Eventing.Reader;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SpaceGameMono.Core.GameStates;
+using SpaceGameMono.Core.Scenes.GameScene.Map;
 
 namespace SpaceGameMono.Core.Scenes.GameScene
 {
     public class GameScene : GameState
     {
 
-        private Map _map;
+        private Map.Map _map;
         
         private Tile[,,] _tiles;
 
         private Song _music;
         private Texture2D _tilesset;
 
+
+
         private const int TileSize = 32;
         
         public GameScene(SpaceGame game, GraphicsDevice graphicsDevice)
             : base(game, graphicsDevice) 
         {
-
         }
 
         public override void LoadContent(ContentManager content)
@@ -40,7 +38,9 @@ namespace SpaceGameMono.Core.Scenes.GameScene
 
         public override void Init()
         {
-            _map = new Map(200, 200, TileSize, _tilesset);
+            _map = new Map.Map(200, 200, TileSize, _tilesset);
+
+
 
         }
 
@@ -51,15 +51,18 @@ namespace SpaceGameMono.Core.Scenes.GameScene
 
         public override void Update(GameTime gameTime)
         {
+            
             _map.Update(gameTime);
+            
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-           
             // draw map
-            _map.Draw(spriteBatch);
-
+            var time = DateTime.Now;
+            for (int i = 0; i < 1000; i++)
+                _map.Draw(spriteBatch);
+            Console.WriteLine("ticks: " + (DateTime.Now.Ticks - time.Ticks) * 0.0001 + "\n");
         }
     }
 }

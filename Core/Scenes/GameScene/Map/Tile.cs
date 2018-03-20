@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SpaceGameMono.Core.Scenes.GameScene
+namespace SpaceGameMono.Core.Scenes.GameScene.Map
 {
     public class Tile
     {
@@ -11,9 +11,8 @@ namespace SpaceGameMono.Core.Scenes.GameScene
         private readonly int _x;
         private readonly int _y;
         private readonly Rectangle _destRect;
+        private readonly Rectangle _sourceRectangle;
         private readonly int _tileSize;
-
-        private Rectangle _sourceRectangle;
         
         public Tile(bool collision, int id, int x, int y, int tileSize)
         {

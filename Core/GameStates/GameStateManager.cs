@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Runtime;
+using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,6 +20,7 @@ namespace SpaceGameMono.Core.GameStates
 
         public static void ChangeGameState(GameState newGameState)
         {
+
             Task.Run( () => 
             {
                 newGameState.LoadContent(GlobalContent);
