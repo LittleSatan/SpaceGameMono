@@ -42,8 +42,8 @@ namespace SpaceGameMono.Core
                 Config.SaveConfig();
             }
             
-            _graphics.PreferredBackBufferWidth = Config.Width;
-            _graphics.PreferredBackBufferHeight = Config.Height;
+            _graphics.PreferredBackBufferWidth = (int) Config.Width;
+            _graphics.PreferredBackBufferHeight = (int) Config.Height;
             _graphics.IsFullScreen = Config.Fullscreen;
             _graphics.SynchronizeWithVerticalRetrace = Config.VSync;
             IsFixedTimeStep = Config.FixedTimeStep;
@@ -148,14 +148,14 @@ namespace SpaceGameMono.Core
             // apply new window size
             if (_resizeWindowRequested)
             {
-                Config.Width = Window.ClientBounds.Width;
-                Config.Height = Window.ClientBounds.Height;
+                Config.Width = (uint) Window.ClientBounds.Width;
+                Config.Height = (uint) Window.ClientBounds.Height;
                 if (Config.Width < MinWindowWidth)
                     Config.Width = MinWindowWidth;
                 if (Config.Height < MinWindowHeight)
                     Config.Height = MinWindowHeight;
-                _graphics.PreferredBackBufferWidth = Config.Width;
-                _graphics.PreferredBackBufferHeight = Config.Height;
+                _graphics.PreferredBackBufferWidth = (int) Config.Width;
+                _graphics.PreferredBackBufferHeight = (int) Config.Height;
                 _graphics.ApplyChanges();
                 if (GameStateManager.GetGameState() != null)
                     GameStateManager.GetGameState().Resize();                

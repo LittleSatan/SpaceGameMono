@@ -5,38 +5,12 @@ namespace SpaceGameMono.Core
 {
     public static class Config
     {
-        private static int _width = 1280;
-
-        public static int Width
-        {
-            get => _width;
-            set
-            {
-                _width = value;
-                if (_width < 0)
-                    _width = 0;
-            }
-        }
-
-        private static int _height = 720;
-
-        public static int Height
-        {
-            get => _height;
-            set
-            {
-                _height = value;
-                if (_height < 0)
-                    _height = 0;
-            }
-        }
-
+        public static uint Width { get; set; } = 1280;
+        public static uint Height { get; set; } = 720;
         public static bool Fullscreen { get; set; } = false;
-
         public static bool VSync { get; set; } = true;
-
         public static bool FixedTimeStep { get; set; } = true;
-        
+        public static float MapZoom { get; set; } = 2f;
         
         private static float _menuScale;
 
@@ -135,6 +109,8 @@ namespace SpaceGameMono.Core
                             Type propertyType = t.GetProperty(prot).PropertyType;
                             if (propertyType == typeof(int))
                                 t.GetProperty(prot)?.SetValue(null, int.Parse(value));
+                            if (propertyType == typeof(uint))
+                                t.GetProperty(prot)?.SetValue(null, uint.Parse(value));
                             if (propertyType == typeof(float))
                                 t.GetProperty(prot)?.SetValue(null, float.Parse(value));
                             if (propertyType == typeof(bool))

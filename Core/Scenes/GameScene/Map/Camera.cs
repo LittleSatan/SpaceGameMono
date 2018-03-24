@@ -41,14 +41,14 @@ namespace SpaceGameMono.Core.Scenes.GameScene.Map
 
         public void UpdateMax()
         {
-            _maxX = _width - Config.Width;
+            _maxX = _width - (int) Config.Width;
             if (_maxX < 0)
             {
                 _maxX = 0;
                 ScrollX = false;
             }
             else ScrollX = true;
-            _maxY = _height - Config.Height;
+            _maxY = _height - (int) Config.Height;
             if (_maxY < 0)
             {
                 _maxY = 0;

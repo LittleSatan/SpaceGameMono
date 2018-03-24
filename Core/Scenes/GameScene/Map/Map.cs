@@ -46,19 +46,19 @@ namespace SpaceGameMono.Core.Scenes.GameScene.Map
             if (Keyboard.GetState().IsKeyDown(Keys.Up)) _camera.Y -= scrollSpeed;
             
             // start to draw at
-            startX = (int) (_camera.X / _tileSize);
-            startY = (int) (_camera.Y / _tileSize);
+            startX = (int) (_camera.X / (_tileSize));
+            startY = (int) (_camera.Y / (_tileSize));
             // ent to draw at
-            endX = startX + ((Config.Width + _tileSize - 1) / _tileSize) + 1;
-            endY = startY + ((Config.Height + _tileSize - 1) / _tileSize) + 1;
+            endX = startX + (int) (( Config.Width + (_tileSize * Config.MapZoom) - 1) / (_tileSize * Config.MapZoom)) + 1;
+            endY = startY + (int) (( Config.Height + (_tileSize * Config.MapZoom) - 1) / (_tileSize * Config.MapZoom)) + 1;
             // dont leave the map
             if (endX > _tiles.GetLength(0))
                 endX = _tiles.GetLength(0);
             if (endY > _tiles.GetLength(1))
                 endY = _tiles.GetLength(1);
 
-            offsetX = (int) (_camera.ScrollX ? _camera.X : (Config.Width - _tiles.GetLength(0) * _tileSize) / -4f);
-            offsetY = (int) (_camera.ScrollY ? _camera.Y : (Config.Height - _tiles.GetLength(1) * _tileSize) / -4f);   
+            offsetX = (int) (_camera.ScrollX ? _camera.X : (Config.Width - _tiles.GetLength(0) * (_tileSize * Config.MapZoom)) / -4f);
+            offsetY = (int) (_camera.ScrollY ? _camera.Y : (Config.Height - _tiles.GetLength(1) * (_tileSize * Config.MapZoom)) / -4f);   
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -68,16 +68,19 @@ namespace SpaceGameMono.Core.Scenes.GameScene.Map
                     -offsetX,
                     -offsetY,
                     0f
-                )
+                ) * Matrix.CreateScale(new Vector3(Config.MapZoom, Config.MapZoom, 1))
             );
             
             // draw all tiles
+            int i = 0;
             for (int x = startX; x < endX; x++)
                 for (int y = startY; y < endY; y++)
                     for (int z = 0; z < _tiles.GetLength(2); z++)
                     {
+                        i++;
                         _tiles[x,y,z].Draw(spriteBatch, _tileset);
                     }
+            Console.WriteLine(i);
             spriteBatch.End();
         }
         
