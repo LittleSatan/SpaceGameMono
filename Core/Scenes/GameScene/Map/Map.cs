@@ -39,7 +39,7 @@ namespace SpaceGameMono.Core.Scenes.GameScene.Map
 
         public void Update(GameTime gameTime)
         {
-            float scrollSpeed = (float) (gameTime.ElapsedGameTime.TotalMilliseconds / 4f);
+            float scrollSpeed = (float) (gameTime.ElapsedGameTime.TotalMilliseconds / Config.MapZoom / 4f);
             if (Keyboard.GetState().IsKeyDown(Keys.Right)) _camera.X += scrollSpeed;
             if (Keyboard.GetState().IsKeyDown(Keys.Left)) _camera.X -= scrollSpeed;
             if (Keyboard.GetState().IsKeyDown(Keys.Down)) _camera.Y += scrollSpeed;
@@ -65,22 +65,18 @@ namespace SpaceGameMono.Core.Scenes.GameScene.Map
         {
             spriteBatch.Begin(
                 transformMatrix: Matrix.CreateTranslation(
-                    -offsetX,
-                    -offsetY,
-                    0f
-                ) * Matrix.CreateScale(new Vector3(Config.MapZoom, Config.MapZoom, 1))
+                                     -offsetX,
+                                     -offsetY,
+                                     0f
+                                 ) * Matrix.CreateScale(new Vector3(Config.MapZoom, Config.MapZoom, 1)),
+                samplerState: SamplerState.PointClamp
             );
             
             // draw all tiles
-            int i = 0;
             for (int x = startX; x < endX; x++)
                 for (int y = startY; y < endY; y++)
                     for (int z = 0; z < _tiles.GetLength(2); z++)
-                    {
-                        i++;
                         _tiles[x,y,z].Draw(spriteBatch, _tileset);
-                    }
-            Console.WriteLine(i);
             spriteBatch.End();
         }
         
