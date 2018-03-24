@@ -33,6 +33,11 @@ namespace SpaceGameMono.Core
 
         public static bool Fullscreen { get; set; } = false;
 
+        public static bool VSync { get; set; } = true;
+
+        public static bool FixedTimeStep { get; set; } = true;
+        
+        
         private static float _menuScale;
 
         public static float MenuScale

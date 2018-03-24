@@ -16,11 +16,11 @@ namespace SpaceGameMono.Core.Scenes.GameScene
         
         private Tile[,,] _tiles;
 
+        private DateTime time;
+
         private Song _music;
         private Texture2D _tilesset;
-
-
-
+        
         private const int TileSize = 32;
         
         public GameScene(SpaceGame game, GraphicsDevice graphicsDevice)
@@ -32,16 +32,11 @@ namespace SpaceGameMono.Core.Scenes.GameScene
         {
             base.LoadContent(content);
             _tilesset = Content.Load<Texture2D>("GameScene/tileset");
-            
-            
         }
 
         public override void Init()
         {
             _map = new Map.Map(200, 200, TileSize, _tilesset);
-
-
-
         }
 
         public override void Resize()
@@ -51,18 +46,13 @@ namespace SpaceGameMono.Core.Scenes.GameScene
 
         public override void Update(GameTime gameTime)
         {
-            
             _map.Update(gameTime);
-            
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             // draw map
-            var time = DateTime.Now;
-            for (int i = 0; i < 1000; i++)
-                _map.Draw(spriteBatch);
-            Console.WriteLine("ticks: " + (DateTime.Now.Ticks - time.Ticks) * 0.0001 + "\n");
+            _map.Draw(spriteBatch);
         }
     }
 }

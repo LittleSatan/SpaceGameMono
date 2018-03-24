@@ -45,7 +45,9 @@ namespace SpaceGameMono.Core
             _graphics.PreferredBackBufferWidth = Config.Width;
             _graphics.PreferredBackBufferHeight = Config.Height;
             _graphics.IsFullScreen = Config.Fullscreen;
-
+            _graphics.SynchronizeWithVerticalRetrace = Config.VSync;
+            IsFixedTimeStep = Config.FixedTimeStep;
+            
             // Center Window
             Window.Position = new Point(
                 (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 2) -
@@ -129,7 +131,8 @@ namespace SpaceGameMono.Core
 
             
             if (GameStateManager.GetGameState() != null)
-                GameStateManager.GetGameState().Update(gameTime);
+                GameStateManager.GetGameState().Update(gameTime);           
+            
             base.Update(gameTime);
         }
 
@@ -139,6 +142,7 @@ namespace SpaceGameMono.Core
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            
             // apply new window size
             if (_resizeWindowRequested)
             {
