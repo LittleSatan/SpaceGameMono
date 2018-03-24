@@ -143,6 +143,8 @@ namespace SpaceGameMono.Core
         protected override void Draw(GameTime gameTime)
         {
             
+            GraphicsDevice.Clear(Color.Black);
+                        
             // apply new window size
             if (_resizeWindowRequested)
             {
