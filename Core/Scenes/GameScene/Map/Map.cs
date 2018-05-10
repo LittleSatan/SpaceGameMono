@@ -39,7 +39,7 @@ namespace SpaceGameMono.Core.Scenes.GameScene.Map
 
         public void Update(GameTime gameTime)
         {
-            float scrollSpeed = (float) (gameTime.ElapsedGameTime.TotalMilliseconds / Config.MapZoom / 4f);
+            float scrollSpeed = (float) (gameTime.ElapsedGameTime.TotalSeconds * Config.MapZoom * 200f);
             if (Keyboard.GetState().IsKeyDown(Keys.Right)) _camera.X += scrollSpeed;
             if (Keyboard.GetState().IsKeyDown(Keys.Left)) _camera.X -= scrollSpeed;
             if (Keyboard.GetState().IsKeyDown(Keys.Down)) _camera.Y += scrollSpeed;

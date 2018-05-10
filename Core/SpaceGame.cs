@@ -166,7 +166,7 @@ namespace SpaceGameMono.Core
             base.Draw(gameTime);
         }
 
-        public void exit()
+        public void EndGame()
         {
             this.Exit();
         }

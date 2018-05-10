@@ -141,7 +141,7 @@ namespace SpaceGameMono.Core.Scenes.Title
                             Console.WriteLine("settings");
                             break;
                         case 3:
-                            Game.Exit();
+                            Game.EndGame();
                             break;
                     }
                 }
